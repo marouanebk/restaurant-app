@@ -268,7 +268,12 @@ class _onBoardingPageState extends State<onBoardingPage> {
       color: defaultProceedButtonColor,
       child: InkWell(
         borderRadius: defaultProceedButtonBorderRadius,
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => Authenticationpage()));
+        },
         child: const Padding(
           padding: defaultProceedButtonPadding,
           child: Text(
@@ -315,17 +320,38 @@ class _onBoardingPageState extends State<onBoardingPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     index == pagesLength - 1
-                        ? Container()
-                        : const Text(
+                        ? const Text(
                             "Skip",
                             style: TextStyle(
-                              color: Color(0xFF4B5563),
+                              color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
                               letterSpacing: 0.7,
                               height: 1.5,
                             ),
                             textAlign: TextAlign.center,
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Authenticationpage()));
+                            },
+                            child: Container(
+                              child: const Text(
+                                "Skip",
+                                style: TextStyle(
+                                  color: Color(0xFF4B5563),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  letterSpacing: 0.7,
+                                  height: 1.5,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
 
                     CustomIndicator(

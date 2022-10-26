@@ -33,6 +33,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.6
+  modal_bottom_sheet: ^2.1.2
   onboarding: ^3.1.0
 
 dev_dependencies:
@@ -51,13 +52,12 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-  #on boarding 
+    #on boarding
     - assets/obBoarding/Order illustration.svg
     - assets/obBoarding/Safe Food.svg
     - assets/obBoarding/Tracking & Maps.svg
     #authentication
     - assets/authentication/Order Success.svg
-    
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
