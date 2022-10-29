@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/widgets/text_field_input.dart';
 
-Column login_page(fullname , email, pass) {
+Column create_page(fullname, email, pass) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.end,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -10,17 +10,6 @@ Column login_page(fullname , email, pass) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-           Text(
-            'Create Account',
-            style: TextStyle(
-              fontSize: 16.0,
-              wordSpacing: 1,
-              letterSpacing: 1.2,
-              fontWeight: FontWeight.w600,
-              color: Color(AppColors.grey),
-            ),
-            textAlign: TextAlign.center,
-          ),
           Container(
             padding: EdgeInsets.only(bottom: 12),
             decoration: BoxDecoration(
@@ -32,7 +21,7 @@ Column login_page(fullname , email, pass) {
               ),
             ),
             child: Text(
-              'Login',
+              'Create Account',
               style: TextStyle(
                 fontSize: 16.0,
                 wordSpacing: 1,
@@ -45,8 +34,22 @@ Column login_page(fullname , email, pass) {
               textAlign: TextAlign.center,
             ),
           ),
-          
-         
+          InkWell(
+            onTap: () {},
+            child: Container(
+              child: Text(
+                'Login',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  wordSpacing: 1,
+                  letterSpacing: 1.2,
+                  fontWeight: FontWeight.w600,
+                  color: Color(AppColors.grey),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
         ],
       ),
       SizedBox(
@@ -59,7 +62,9 @@ Column login_page(fullname , email, pass) {
           wordSpacing: 1,
           letterSpacing: 1.2,
           fontWeight: FontWeight.w600,
-          color: Color(fullname.toString().isEmpty ? AppColors.belowBlack :AppColors.textController ),
+          color: Color(fullname.toString().isEmpty
+              ? AppColors.belowBlack
+              : AppColors.textController),
         ),
         textAlign: TextAlign.start,
       ),
@@ -87,7 +92,9 @@ Column login_page(fullname , email, pass) {
           wordSpacing: 1,
           letterSpacing: 1.2,
           fontWeight: FontWeight.w600,
-          color: Color(email.toString().isEmpty ? AppColors.belowBlack :AppColors.textController ),
+          color: Color(email.toString().isEmpty
+              ? AppColors.belowBlack
+              : AppColors.textController),
         ),
         textAlign: TextAlign.start,
       ),
@@ -115,7 +122,9 @@ Column login_page(fullname , email, pass) {
           wordSpacing: 1,
           letterSpacing: 1.2,
           fontWeight: FontWeight.w600,
-          color: Color(pass.toString().isEmpty ? AppColors.belowBlack :AppColors.textController ),
+          color: Color(pass.toString().isEmpty
+              ? AppColors.belowBlack
+              : AppColors.textController),
         ),
         textAlign: TextAlign.start,
       ),

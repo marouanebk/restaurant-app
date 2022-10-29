@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:restaurent_app/authentication/presentatuin/components/create_account.dart';
+import 'package:restaurent_app/authentication/presentatuin/components/login_page.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/widgets/text_field_input.dart';
 
@@ -15,14 +16,16 @@ class Authenticationpage extends StatefulWidget {
 }
 
 class _AuthenticationpageState extends State<Authenticationpage> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController fullname = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    _email.dispose();
-    _password.dispose();
+    email.dispose();
+    fullname.dispose();
+    password.dispose();
   }
 
   @override
@@ -103,22 +106,10 @@ class _AuthenticationpageState extends State<Authenticationpage> {
                   context: context,
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
-                  builder: (context) =>
+                  builder: (context) => Container(
+                    // height: MediaQuery.of(context).size.height * 0.75,
+                    height: 576,
 
-                      //   return DraggableScrollableSheet(
-                      //     initialChildSize: 0.4,
-                      //     minChildSize: 0.2,
-                      //     maxChildSize: 0.6,
-                      //     builder: (_, controller) {
-                      //       return Container(
-                      //         color: Colors.red,
-                      //       );
-                      //     },
-                      //   );
-                      // }
-
-                      Container(
-                    height: MediaQuery.of(context).size.height * 0.75,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -130,7 +121,7 @@ class _AuthenticationpageState extends State<Authenticationpage> {
                       padding: EdgeInsets.symmetric(
                           horizontal: MediaQuery.of(context).size.width * 0.1,
                           vertical: 40),
-                      child: create_page(_email, _password),
+                      child: CreateAccountPage(fullname : fullname, email : email, pass : password),
                       // child: Column(children: [Text("helo")]),
                     ),
                   ),
@@ -159,7 +150,32 @@ class _AuthenticationpageState extends State<Authenticationpage> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet<dynamic>(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => Container(
+                    // height: MediaQuery.of(context).size.height * 0.75,
+                    height: 576,
+
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(36),
+                          topRight: Radius.circular(36)),
+                      // border: Border.all(color: Colors.blueAccent),
+                    ),
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: MediaQuery.of(context).size.width * 0.1,
+                            vertical: 40),
+                        child: LoginPage()
+                        // child: Column(children: [Text("helo")]),
+                        ),
+                  ),
+                );
+              },
               child: Container(
                 height: 49,
                 width: 256,

@@ -24,17 +24,23 @@ class TextFieldInput extends StatelessWidget {
       autocorrect: false,
       enableSuggestions: false,
       style: TextStyle(
+        color: Color(AppColors.belowBlack),
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+      ),
+      decoration: InputDecoration(
+        hintStyle: TextStyle(
           color: Color(AppColors.textController),
           fontSize: 12,
-          fontWeight: FontWeight.w500),
-      decoration: InputDecoration(
+          fontWeight: FontWeight.w500,
+        ),
         fillColor: Colors.white,
         hintText: hintText,
         // border: InputBorder,
-        // focusedBorder: InputBorder,
-        // enabledBorder: InputBorder,
+        focusedBorder: InputBorder,
+        enabledBorder: InputBorder,
         filled: true,
-        // contentPadding: const EdgeInsets.all(8),
+        contentPadding: const EdgeInsets.all(8),
       ),
       keyboardType: textInputType,
       obscureText: isPass,
