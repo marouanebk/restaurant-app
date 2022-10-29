@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:onboarding/onboarding.dart';
+import 'package:restaurent_app/OnBoarding/presentation/components/first_page.dart';
+import 'package:restaurent_app/OnBoarding/presentation/components/second_page.dart';
+import 'package:restaurent_app/OnBoarding/presentation/components/third_page.dart';
 import 'package:restaurent_app/authentication/presentatuin/screens/AuthenticationPage.dart';
 
 class onBoardingPage extends StatefulWidget {
@@ -16,215 +19,12 @@ class _onBoardingPageState extends State<onBoardingPage> {
   late int index;
   final onboardingPagesList = [
     //first page
-    PageModel(
-      widget: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            width: 0.0,
-            color: Colors.white,
-          ),
-        ),
-        child: SingleChildScrollView(
-          controller: ScrollController(),
-          child: Column(
-            children: [
-              const Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 45.0,
-                  vertical: 70.0,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 45.0,
-                  vertical: 90.0,
-                ),
-                child: Stack(children: [
-                  SvgPicture.asset(
-                    'assets/obBoarding/Tracking & Maps.svg',
-                    fit: BoxFit.cover,
-                  ),
-                ]),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Nearby restaurants',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      wordSpacing: 1,
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "You don't have to go far to find a good restaurant\n we have provided all the restaurants that is \nnear you",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: 0.7,
-                      height: 1.5,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
+    pageOne(), 
     //second page
-    PageModel(
-      widget: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            width: 0.0,
-            color: Colors.white,
-          ),
-        ),
-        child: SingleChildScrollView(
-          controller: ScrollController(),
-          child: Column(
-            children: [
-              const Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 45.0,
-                  vertical: 70.0,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 45.0,
-                  vertical: 90.0,
-                ),
-                child: Stack(children: [
-                  SvgPicture.asset(
-                    'assets/obBoarding/Order illustration.svg',
-                    fit: BoxFit.cover,
-                  ),
-                ]),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Select the Favorites Menu',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      wordSpacing: 1,
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Now eat well, don't leave the house,You can\nchoose your favorite food only with \none click",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: 0.7,
-                      height: 1.5,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
+    pageTwo(),
     //3rd page
-    PageModel(
-      widget: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            width: 0.0,
-            color: Colors.white,
-          ),
-        ),
-        child: SingleChildScrollView(
-          controller: ScrollController(),
-          child: Column(
-            children: [
-              const Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 45.0,
-                  vertical: 70.0,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 45.0,
-                  vertical: 90.0,
-                ),
-                child: SvgPicture.asset(
-                  'assets/obBoarding/Safe Food.svg',
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Good food at a cheap price',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      wordSpacing: 1,
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "You can eat at expensive restaurants with\naffordable price",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: 0.7,
-                      height: 1.5,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
+    pageThree(),
+    
   ];
 
   @override

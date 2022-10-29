@@ -3,10 +3,27 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:restaurent_app/authentication/presentatuin/components/create_account.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
+import 'package:restaurent_app/core/widgets/text_field_input.dart';
 
-class Authenticationpage extends StatelessWidget {
+class Authenticationpage extends StatefulWidget {
   const Authenticationpage({super.key});
+
+  @override
+  State<Authenticationpage> createState() => _AuthenticationpageState();
+}
+
+class _AuthenticationpageState extends State<Authenticationpage> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,22 +99,40 @@ class Authenticationpage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                showMaterialModalBottomSheet(
+                showModalBottomSheet<dynamic>(
                   context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
                   builder: (context) =>
-                      // {
+
                       //   return DraggableScrollableSheet(
-                      //     initialChildSize: 0.6,
+                      //     initialChildSize: 0.4,
                       //     minChildSize: 0.2,
-                      //     maxChildSize: 0.85,
+                      //     maxChildSize: 0.6,
                       //     builder: (_, controller) {
-                      //       return Container();
+                      //       return Container(
+                      //         color: Colors.red,
+                      //       );
                       //     },
                       //   );
+                      // }
 
                       Container(
-                    height: MediaQuery.of(context).size.width * 1.3,
-                    child: Text("hello world"),
+                    height: MediaQuery.of(context).size.height * 0.75,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(36),
+                          topRight: Radius.circular(36)),
+                      // border: Border.all(color: Colors.blueAccent),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.1,
+                          vertical: 40),
+                      child: create_page(_email, _password),
+                      // child: Column(children: [Text("helo")]),
+                    ),
                   ),
                 );
               },
@@ -105,11 +140,11 @@ class Authenticationpage extends StatelessWidget {
                 height: 49,
                 width: 256,
                 decoration: BoxDecoration(
-                    color: Color(AppColors.mainGreen),
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    border: Border.all(color: Colors.blueAccent)),
-                child: Center(
-                  child: const Text(
+                  color: Color(AppColors.mainGreen),
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                ),
+                child: const Center(
+                  child: Text(
                     'Create Account',
                     style: TextStyle(
                       fontSize: 14.0,
@@ -129,9 +164,9 @@ class Authenticationpage extends StatelessWidget {
                 height: 49,
                 width: 256,
                 decoration: BoxDecoration(
-                    color: Color(AppColors.openGreen),
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    border: Border.all(color: Colors.blueAccent)),
+                  color: Color(AppColors.openGreen),
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
                 child: Center(
                   child: Text(
                     'Login',
@@ -152,10 +187,6 @@ class Authenticationpage extends StatelessWidget {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  // Note: Styles for TextSpans must be explicitly defined.
-
-                  // Child text spans will inherit styles from parent
-
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
@@ -163,7 +194,6 @@ class Authenticationpage extends StatelessWidget {
                     letterSpacing: 0.7,
                     height: 1.5,
                   ),
-
                   children: <TextSpan>[
                     const TextSpan(
                         text:
