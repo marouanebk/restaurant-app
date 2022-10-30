@@ -14,7 +14,7 @@ class SuccessScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(),
+            const Spacer(),
             Container(
               height: 110,
               width: 110,
@@ -26,18 +26,18 @@ class SuccessScreen extends StatelessWidget {
                   width: 3,
                 ),
               ),
-              child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+              child: const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Icon(
                     Icons.check,
                     size: 55.0,
                     color: Colors.white,
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Success',
               style: TextStyle(
                 fontSize: 24.0,
@@ -48,10 +48,10 @@ class SuccessScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
-            Text(
+            const Text(
               'Please check your email for create\na new password',
               style: TextStyle(
                 fontSize: 16.0,
@@ -62,13 +62,13 @@ class SuccessScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 26,
             ),
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFF6B7280),
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ class SuccessScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: EdgeInsets.symmetric(
                 vertical: 60,
@@ -93,7 +93,7 @@ class SuccessScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                          builder: (context) => NewPasswordScreen()),
+                          builder: (context) => const NewPasswordScreen()),
                       (Route<dynamic> route) => false);
                 },
                 child: Container(
