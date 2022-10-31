@@ -33,19 +33,16 @@ class _BaseScreenState extends State<BaseScreen> {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
-        title: ("HOME"),
         activeColorPrimary: Color(AppColors.mainGreen),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.shopping_cart),
-        title: ("Shopping cart"),
+        icon: Icon(CupertinoIcons.square_list_fill),
         activeColorPrimary: Color(AppColors.mainGreen),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.heart),
-        title: ("Favorite"),
+        icon: Icon(CupertinoIcons.profile_circled),
         activeColorPrimary: Color(AppColors.mainGreen),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
