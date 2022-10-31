@@ -5,7 +5,9 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
+import 'package:restaurent_app/history/presentation/screens/booking_history.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/main_page.dart';
+import 'package:restaurent_app/profile/presentation/screens/profile_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
@@ -19,9 +21,9 @@ class _BaseScreenState extends State<BaseScreen> {
 
   List<Widget> _buildScreens() {
     return [
-      MainPage(),
-      MainPage(),
-      MainPage(),
+      const MainPage(),
+      const BookingHistoryScreen(),
+      const ProfileScreen(),
       //                              0028187365
 
       // MainScreen(),
@@ -32,17 +34,17 @@ class _BaseScreenState extends State<BaseScreen> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
+        icon: const Icon(CupertinoIcons.home),
         activeColorPrimary: Color(AppColors.mainGreen),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.square_list_fill),
+        icon: const Icon(CupertinoIcons.square_list_fill),
         activeColorPrimary: Color(AppColors.mainGreen),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.profile_circled),
+        icon: const Icon(CupertinoIcons.profile_circled),
         activeColorPrimary: Color(AppColors.mainGreen),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
@@ -64,25 +66,27 @@ class _BaseScreenState extends State<BaseScreen> {
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows:
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-      decoration: NavBarDecoration(
+      decoration: const NavBarDecoration(
         boxShadow: <BoxShadow>[
-          // BoxShadow(
-          //   color: Colors.black,
-          //   blurRadius: 10,
-          //   spreadRadius: 1,
-          // ),
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 14,
+            spreadRadius: 0,
+          ),
+
         ],
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
         colorBehindNavBar: Colors.white,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties(
+      itemAnimationProperties: const ItemAnimationProperties(
         // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation(
+      screenTransitionAnimation: const ScreenTransitionAnimation(
         // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,
