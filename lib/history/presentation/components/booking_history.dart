@@ -20,6 +20,8 @@ class _OrderHistoryState extends State<OrderHistory> {
           height: 6,
         ),
         shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+
         // scrollDirection: Axis.vertical,
         // padding: const EdgeInsets.only(right: 12.0),
 
@@ -99,13 +101,15 @@ class _OrderHistoryState extends State<OrderHistory> {
                                     color: Color(AppColors.mainGreen),
                                   ),
                                 ),
-                                 TextSpan(
+                                const TextSpan(
                                   text: "kazi Deiry, s",
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(width: 50,),
+                          SizedBox(
+                            width: 50,
+                          ),
                           //was here
 
                           InkWell(
@@ -142,8 +146,6 @@ class _OrderHistoryState extends State<OrderHistory> {
                 ),
 
                 // try here
-                
-                
               ],
             ),
           );

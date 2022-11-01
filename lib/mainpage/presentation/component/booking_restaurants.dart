@@ -20,6 +20,8 @@ class _BookingRestaurantState extends State<BookingRestaurant> {
           height: 6,
         ),
         shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+
         // scrollDirection: Axis.vertical,
         // padding: const EdgeInsets.only(right: 12.0),
 
@@ -99,11 +101,14 @@ class _BookingRestaurantState extends State<BookingRestaurant> {
                                     color: Color(AppColors.mainGreen),
                                   ),
                                 ),
-                                 TextSpan(
+                                TextSpan(
                                   text: "kazi Deiry, s",
                                 ),
                               ],
                             ),
+                          ),
+                          SizedBox(
+                            width: 50,
                           ),
                           //was here
 
@@ -141,8 +146,6 @@ class _BookingRestaurantState extends State<BookingRestaurant> {
                 ),
 
                 // try here
-                
-                
               ],
             ),
           );

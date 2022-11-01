@@ -5,7 +5,7 @@ import 'package:onboarding/onboarding.dart';
 import 'package:restaurent_app/OnBoarding/presentation/components/first_page.dart';
 import 'package:restaurent_app/OnBoarding/presentation/components/second_page.dart';
 import 'package:restaurent_app/OnBoarding/presentation/components/third_page.dart';
-import 'package:restaurent_app/authentication/presentatuin/screens/AuthenticationPage.dart';
+import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
 
 class onBoardingPage extends StatefulWidget {
   const onBoardingPage({Key? key}) : super(key: key);

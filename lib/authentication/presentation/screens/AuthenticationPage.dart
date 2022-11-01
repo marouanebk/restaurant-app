@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:restaurent_app/authentication/presentatuin/components/create_account.dart';
-import 'package:restaurent_app/authentication/presentatuin/components/login_page.dart';
+import 'package:restaurent_app/authentication/presentation/components/create_account.dart';
+import 'package:restaurent_app/authentication/presentation/components/login_page.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 
 class Authenticationpage extends StatefulWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onboarding/onboarding.dart';
 import 'package:restaurent_app/OnBoarding/presentation/screens/on_boarding_page.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/main_page.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const BaseScreen(),
+      home: const onBoardingPage(),
+      // home: const BaseScreen(),
     );
   }
 }

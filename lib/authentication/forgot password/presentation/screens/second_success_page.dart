@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurent_app/authentication/forgot%20password/presentation/screens/new_password.dart';
-import 'package:restaurent_app/authentication/presentatuin/screens/AuthenticationPage.dart';
+import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 
 class SecondSucessPage extends StatelessWidget {
