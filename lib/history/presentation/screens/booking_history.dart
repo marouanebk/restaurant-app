@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
-import 'package:restaurent_app/history/presentation/components/booking_history.dart';
+import 'package:restaurent_app/history/presentation/components/booking_history_component.dart';
 
 class BookingHistoryScreen extends StatelessWidget {
   const BookingHistoryScreen({super.key});

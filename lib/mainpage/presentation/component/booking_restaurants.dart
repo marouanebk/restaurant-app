@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
+import 'package:restaurent_app/mainpage/presentation/screens/item_detail_screen.dart';
 
 class BookingRestaurant extends StatefulWidget {
   const BookingRestaurant({super.key});
@@ -26,7 +27,7 @@ class _BookingRestaurantState extends State<BookingRestaurant> {
         // padding: const EdgeInsets.only(right: 12.0),
 
         // padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        itemCount: 3,
+        itemCount: 5,
         itemBuilder: (context, index) {
           return Container(
             height: 88,
@@ -82,7 +83,7 @@ class _BookingRestaurantState extends State<BookingRestaurant> {
                       //   height: 6,
                       // ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           RichText(
                             text: TextSpan(
@@ -107,13 +108,17 @@ class _BookingRestaurantState extends State<BookingRestaurant> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 50,
-                          ),
                           //was here
+                          SizedBox(width: 50,),
+                          
 
                           InkWell(
-                            onTap: () {},
+                            onTap: () =>
+                                Navigator.of(context, rootNavigator: true).push(
+                              MaterialPageRoute(
+                                builder: (_) => ItemDetailScreen(),
+                              ),
+                            ),
                             child: Container(
                               height: 28,
                               width: 88,

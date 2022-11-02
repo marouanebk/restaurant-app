@@ -23,38 +23,12 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, top: 42),
+          padding: const EdgeInsets.only(left: 20, ),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.menu)),
-                      const Text(
-                        'Agrabad 435, Chittagong',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          wordSpacing: 1,
-                          letterSpacing: 1.2,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF4B5563),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Container(
-                        height: 32,
-                        width: 32,
-                        decoration: const BoxDecoration(
-                            color: Colors.black, shape: BoxShape.circle),
-                      ),
-                    ],
-                  ),
-                ),
+                first_padding(),
                 const SizedBox(
                   height: 18,
                 ),
@@ -104,4 +78,36 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+}
+
+
+Padding first_padding() {
+  return Padding(
+                  padding: const EdgeInsets.only(right: 15 ,top: 42 ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.menu)),
+                      const Text(
+                        'Agrabad 435, Chittagong',
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          wordSpacing: 1,
+                          letterSpacing: 1.2,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF4B5563),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Container(
+                        height: 32,
+                        width: 32,
+                        decoration: const BoxDecoration(
+                            color: Colors.black, shape: BoxShape.circle),
+                      ),
+                    ],
+                  ),
+                );
+
 }
