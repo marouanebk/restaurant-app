@@ -15,10 +15,15 @@ PageModel pageTwo() {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Spacer(
+            flex: 1,
+          ),
+
+
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 45.0,
-              vertical: 70.0,
+              // vertical: 70.0,
             ),
             child: Stack(children: [
               SvgPicture.asset(
@@ -26,6 +31,9 @@ PageModel pageTwo() {
                 fit: BoxFit.cover,
               ),
             ]),
+          ),
+          Spacer(
+            flex: 1,
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 45.0),
@@ -61,9 +69,10 @@ PageModel pageTwo() {
               ),
             ),
           ),
+          // Spacer(flex: 1,),
           const Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 30.0,
+              vertical: 15.0,
             ),
           ),
         ],

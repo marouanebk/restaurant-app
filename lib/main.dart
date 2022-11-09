@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:onboarding/onboarding.dart';
 import 'package:restaurent_app/OnBoarding/presentation/screens/on_boarding_page.dart';
-import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';
-import 'package:restaurent_app/mainpage/presentation/screens/main_page.dart';
 
-import 'mainpage/presentation/screens/map_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:restaurent_app/injection_container.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  await ServiceLocator().init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 

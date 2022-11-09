@@ -15,10 +15,13 @@ PageModel pageThree() {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Spacer(
+            flex: 1,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 45.0,
-              vertical: 90.0,
+              // vertical: 70.0,
             ),
             child: Stack(children: [
               SvgPicture.asset(
@@ -27,12 +30,17 @@ PageModel pageThree() {
               ),
             ]),
           ),
+          Spacer(
+            flex: 1,
+          ),
+
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 45.0),
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                'Good food at a cheap price',
+                // 'Good food at a cheap price',
+                'Best Price',
                 style: TextStyle(
                   fontSize: 24.0,
                   wordSpacing: 1,
@@ -49,7 +57,7 @@ PageModel pageThree() {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "You can eat at expensive restaurants with\naffordable price\n",
+                "You can eat at expensive restaurants with\naffordable price\nsgfg",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 12,
@@ -61,9 +69,12 @@ PageModel pageThree() {
               ),
             ),
           ),
+          // const Spacer(
+          //   flex: 1,
+          // ),
           const Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 30.0,
+              vertical: 15.0,
             ),
           ),
         ],

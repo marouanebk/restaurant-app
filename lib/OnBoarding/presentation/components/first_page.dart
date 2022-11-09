@@ -16,10 +16,13 @@ PageModel pageOne() {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Spacer(
+            flex: 1,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 45.0,
-              vertical: 90.0,
+              // vertical: 90.0,
             ),
             child: Stack(children: [
               SvgPicture.asset(
@@ -28,6 +31,14 @@ PageModel pageOne() {
               ),
             ]),
           ),
+          Spacer(
+            flex: 1,
+          ),
+          // const Padding(
+          //   padding: EdgeInsets.symmetric(
+          //     vertical: 15.0,
+          //   ),
+          // ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 45.0),
             child: Align(
@@ -62,9 +73,9 @@ PageModel pageOne() {
               ),
             ),
           ),
-           const Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 30.0,
+              vertical: 15.0,
             ),
           ),
         ],
