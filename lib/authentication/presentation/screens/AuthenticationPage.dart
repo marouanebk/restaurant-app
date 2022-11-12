@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:restaurent_app/authentication/presentation/bloc/user_bloc_bloc.dart';
-import 'package:restaurent_app/authentication/presentation/bloc/user_bloc_event.dart';
-import 'package:restaurent_app/authentication/presentation/bloc/user_bloc_state.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_bloc.dart';
 import 'package:restaurent_app/authentication/presentation/components/create_account.dart';
 import 'package:restaurent_app/authentication/presentation/components/login_page.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
@@ -20,55 +18,47 @@ class _AuthenticationpageState extends State<Authenticationpage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<UserBlocBloc>(),
+      create: (_) => sl<UserBloc>(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              width: 0.0,
+            decoration: BoxDecoration(
               color: Colors.white,
+              border: Border.all(
+                width: 0.0,
+                color: Colors.white,
+              ),
             ),
-          ),
-          child: BlocBuilder<UserBlocBloc, UserBlocState>(
-            // listener: (context, state) {
-            //   // TODO: implement listener
-            // },
-            builder: (context, state) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 45.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 45.0,
+                  ),
+                  child: Stack(children: [
+                    SvgPicture.asset(
+                      'assets/authentication/Order Success.svg',
+                      fit: BoxFit.cover,
                     ),
-                    child: Stack(children: [
-                      SvgPicture.asset(
-                        'assets/authentication/Order Success.svg',
-                        fit: BoxFit.cover,
-                      ),
-                    ]),
+                  ]),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                welcome_padding(),
+                register_padding(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 45.0,
+                    vertical: 15.0,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  welcome_padding(),
-                  register_padding(),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 45.0,
-                      vertical: 15.0,
-                    ),
-                  ),
-                  signup_button(context),
-                  login_botton(context),
-                  footer(),
-                ],
-              );
-            },
-          ),
-        ),
+                ),
+                signup_button(context),
+                login_botton(context),
+                footer(),
+              ],
+            )),
       ),
     );
   }
@@ -121,22 +111,25 @@ Widget signup_button(context) {
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (context) => Container(
-          // height: MediaQuery.of(context).size.height * 0.75,
-          height: 576,
+        builder: (context) => Padding(
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom * 0.5),
+          child: Container(
+            height: 576,
 
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(36), topRight: Radius.circular(36)),
-            // border: Border.all(color: Colors.blueAccent),
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(36), topRight: Radius.circular(36)),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.1,
-                vertical: 40),
-            child: const CreateAccountPage(),
-            // child: Column(children: [Text("helo")]),
+                vertical: 40,
+              ),
+
+              child: const CreateAccountPage(),
+            ),
           ),
         ),
       );
@@ -172,23 +165,24 @@ Widget login_botton(context) {
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (context) => Container(
-          // height: MediaQuery.of(context).size.height * 0.75,
-          height: 576,
+        builder: (context) => Padding(
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom * 0.5),
+          child: Container(
+            height: 576,
 
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(36), topRight: Radius.circular(36)),
-            // border: Border.all(color: Colors.blueAccent),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(36), topRight: Radius.circular(36)),
+            ),
+            child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.1,
+                    vertical: 40),
+                child: const LoginPage()
+                ),
           ),
-          child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.1,
-                  vertical: 40),
-              child: const LoginPage()
-              // child: Column(children: [Text("helo")]),
-              ),
         ),
       );
     },

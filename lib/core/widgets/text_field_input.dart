@@ -7,22 +7,25 @@ class TextFieldInput extends StatelessWidget {
   final bool isPass;
   final String hintText;
   final TextInputType textInputType;
-  const TextFieldInput(
-      {Key? key,
-      required this.hintText,
-      this.isPass = false,
-      required this.textEditingController,
-      required this.textInputType})
-      : super(key: key);
+  final void Function(String) onChangedFunc;
+
+  const TextFieldInput({
+    Key? key,
+    required this.hintText,
+    this.isPass = false,
+    required this.textEditingController,
+    required this.textInputType,
+    required this.onChangedFunc,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final InputBorder =
         OutlineInputBorder(borderSide: Divider.createBorderSide(context));
     return TextField(
-
       controller: textEditingController,
       autocorrect: false,
+      onChanged: onChangedFunc,
       enableSuggestions: false,
       style: TextStyle(
         color: Color(AppColors.belowBlack),

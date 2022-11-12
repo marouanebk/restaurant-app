@@ -10,7 +10,7 @@ import 'package:dartz/dartz.dart';
 typedef DeleteOrUpdateOrAddPost = Future<Unit> Function();
 
 class UserRepository implements BaseUserRepository {
-  final UserRemoteDataSource baseUserRemoteDateSource;
+  final BaseUserRemoteDateSource baseUserRemoteDateSource;
 
   UserRepository(this.baseUserRemoteDateSource);
 

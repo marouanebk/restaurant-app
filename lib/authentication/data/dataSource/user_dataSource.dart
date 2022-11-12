@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurent_app/authentication/data/Models/user_model.dart';
@@ -10,21 +12,31 @@ abstract class BaseUserRemoteDateSource {
   Future<Unit> loginUser(UserModel userModel);
 }
 
-class UserRemoteDataSource implements BaseUserRemoteDateSource {
+class UserRemoteDataSource extends BaseUserRemoteDateSource {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Future<Unit> createUser(UserModel userModel) async {
     try {
+      log("before operation signup email  ");
+
       UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: userModel.email, password: userModel.password);
+
+
+
+          log(cred.toString());
+                log("before after signup email  ");
+
 
       UserModel _user = UserModel(
           id: cred.user!.uid,
           email: userModel.email,
           fullname: userModel.fullname,
           password: userModel.password);
+      log("success");
+      print("success");
 
       // adding user in our database
       await _firestore
@@ -33,11 +45,16 @@ class UserRemoteDataSource implements BaseUserRemoteDateSource {
           .set(_user.toJson());
     } on FirebaseAuthException catch (e) {
       throw ServerException(
-          errorMessageModel: ErrorMessageModel(
-              statusCode: 404,
-              statusMessage: e.message.toString(),
-              success: false));
+        errorMessageModel: ErrorMessageModel(
+          statusCode: 404,
+          statusMessage: e.message.toString(),
+          success: false,
+        ),
+        
+      );
+      
     }
+    print(Future.value(unit));
     return Future.value(unit);
   }
 

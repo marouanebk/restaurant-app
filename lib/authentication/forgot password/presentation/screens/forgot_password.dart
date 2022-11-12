@@ -79,9 +79,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
                   child: TextFieldInput(
-                      hintText: 'Eg namaemail@emailkamu.com',
-                      textEditingController: email,
-                      textInputType: TextInputType.text),
+                    hintText: 'Eg namaemail@emailkamu.com',
+                    textEditingController: email,
+                    textInputType: TextInputType.text,
+                    onChangedFunc: (value) {
+                    },
+                  ),
                 ),
               ),
               SizedBox(
