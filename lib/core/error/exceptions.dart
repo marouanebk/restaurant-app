@@ -1,4 +1,3 @@
-
 import 'package:restaurent_app/core/network/error_message_model.dart';
 
 class ServerException implements Exception {
@@ -12,3 +11,6 @@ class LocalDatabaseException implements Exception {
 
   const LocalDatabaseException({required this.errorMessageModel});
 }
+
+// class ServerException implements Exception {}
+

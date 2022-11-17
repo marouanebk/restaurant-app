@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,10 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
     on<UserBlocEvent>((event, emit) async {
       if (event is CreateUserEvent) {
         emit(LodingUserBlocState());
+        log("before");
         final failuerOrDoneMessage = await createUserUseCase(event.user);
+        log("in bloc");
+        log(failuerOrDoneMessage.toString());
 
         emit(_eitherDoneMessageOrErrorState(
             either: failuerOrDoneMessage, message: ADD_SUCCESS_MESSAGE));
@@ -43,13 +47,17 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
       }
     });
   }
+  // String _mapFailureToMessage(Failure failure) {
+  //   switch (failure.runtimeType) {
+  //     case ServerFailure:
+  //       return "SOME BULLSHIT STUFF WORKING ";
+  //     default:
+  //       return "Unexpected Error, Please try again later.";
+  //   }
+  // }  
   String _mapFailureToMessage(Failure failure) {
-    switch (failure.runtimeType) {
-      case ServerFailure:
-        return SERVER_FAILUERE_MESSAGE;
-      default:
-        return "Unexpected Error, Please try again later.";
-    }
+        return  "SOME BULLSHIT STUFF WORKING ";
+     
   }
 
   UserBlocState _eitherDoneMessageOrErrorState(
@@ -59,3 +67,6 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
         (_) => const MessageUserBlocState(message: ADD_SUCCESS_MESSAGE));
   }
 }
+
+
+  //  s

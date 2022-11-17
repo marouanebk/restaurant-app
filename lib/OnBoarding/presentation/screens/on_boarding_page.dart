@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:onboarding/onboarding.dart';
 import 'package:restaurent_app/OnBoarding/presentation/components/first_page.dart';
 import 'package:restaurent_app/OnBoarding/presentation/components/second_page.dart';
 import 'package:restaurent_app/OnBoarding/presentation/components/third_page.dart';
 import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class onBoardingPage extends StatefulWidget {
-  const onBoardingPage({Key? key}) : super(key: key);
+class OnBoardingPage extends StatefulWidget {
+  const OnBoardingPage({Key? key}) : super(key: key);
 
   @override
-  State<onBoardingPage> createState() => _onBoardingPageState();
+  State<OnBoardingPage> createState() => _OnBoardingPageState();
 }
 
-class _onBoardingPageState extends State<onBoardingPage> {
+class _OnBoardingPageState extends State<OnBoardingPage> {
   late Material materialButton;
   late int index;
+
   final onboardingPagesList = [
     //first page
-    pageOne(), 
+    pageOne(),
     //second page
     pageTwo(),
     //3rd page
     pageThree(),
-    
   ];
 
   @override
@@ -36,13 +35,13 @@ class _onBoardingPageState extends State<onBoardingPage> {
 
   Material _skipButton({void Function(int)? setIndex}) {
     return Material(
-      // borderRadius: defaultSkipButtonBorderRadius,
-      // color: defaultSkipButtonColor,
       child: InkWell(
-        // borderRadius: defaultSkipButtonBorderRadius,
-        onTap: () {
+        onTap: () async {
           if (setIndex != null) {
             if (index == 2) {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setInt("onBoarding", 1);
+
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -58,29 +57,6 @@ class _onBoardingPageState extends State<onBoardingPage> {
               Icons.arrow_forward_sharp,
               color: Color(0xFF32B768),
             )),
-      ),
-    );
-  }
-
-  Material get _signupButton {
-    return Material(
-      borderRadius: defaultProceedButtonBorderRadius,
-      color: defaultProceedButtonColor,
-      child: InkWell(
-        borderRadius: defaultProceedButtonBorderRadius,
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => Authenticationpage()));
-        },
-        child: const Padding(
-          padding: defaultProceedButtonPadding,
-          child: Text(
-            'Sign up',
-            style: defaultProceedButtonTextStyle,
-          ),
-        ),
       ),
     );
   }
@@ -102,17 +78,7 @@ class _onBoardingPageState extends State<onBoardingPage> {
           },
           startPageIndex: 0,
           footerBuilder: (context, dragDistance, pagesLength, setIndex) {
-            return
-                // DecoratedBox(
-                //   decoration: BoxDecoration(
-                //     color: Colors.white,
-                //     // border: Border.all(
-                //     //   width: 0.0,
-                //     //   color: background,
-                //     // ),
-                //   ),
-                //   child:
-                ColoredBox(
+            return ColoredBox(
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(45.0),
@@ -132,12 +98,15 @@ class _onBoardingPageState extends State<onBoardingPage> {
                             textAlign: TextAlign.center,
                           )
                         : GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.setInt("onBoarding", 1);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          Authenticationpage()));
+                                          const Authenticationpage()));
                             },
                             child: Container(
                               child: const Text(
@@ -153,7 +122,6 @@ class _onBoardingPageState extends State<onBoardingPage> {
                               ),
                             ),
                           ),
-
                     CustomIndicator(
                       shouldPaint: true,
                       netDragPercent: dragDistance,
@@ -170,10 +138,6 @@ class _onBoardingPageState extends State<onBoardingPage> {
                         ),
                       ),
                     ),
-                    // index == pagesLength - 1
-                    //     ? _signupButton
-                    //     :
-
                     _skipButton(setIndex: setIndex)
                   ],
                 ),

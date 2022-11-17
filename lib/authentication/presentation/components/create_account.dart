@@ -6,9 +6,11 @@ import 'package:restaurent_app/authentication/domaine/Entities/user.dart';
 import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_bloc.dart';
 import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_event.dart';
 import 'package:restaurent_app/authentication/presentation/components/login_page.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_state.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/widgets/text_field_input.dart';
 import 'package:restaurent_app/injection_container.dart';
+import 'package:restaurent_app/mainpage/presentation/screens/main_page.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -24,6 +26,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   bool fullnameColor = false;
   bool emailColor = false;
   bool passwordColor = false;
+  String error = "";
 
   @override
   void initState() {
@@ -62,8 +65,28 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             controllerLabel("Password", _pass, passwordColor),
             const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
             textController("********", _pass, true, 3),
-            const SizedBox(
-              height: 30,
+            BlocListener<UserBloc, UserBlocState>(
+              listener: (context, state) {
+                if (state is ErrorUserBlocState) {
+                  setState(() {
+                    error = state.message;
+                  });
+                } else if (state is MessageUserBlocState) {
+                  setState(() {
+                    error = state.message;
+                  });
+                }
+              },
+              child: SizedBox(
+                height: 30,
+                child: Center(
+                  child: Text(
+                    error,
+                    style: const TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.w900),
+                  ),
+                ),
+              ),
             ),
             registrationButton(context),
             registerGoogle(context),
@@ -80,39 +103,47 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       ),
       child: TextButton(
         onPressed: () {
-          final userCred = User(
-            fullname: _fullname.text,
-            email: _email.text,
-            password: _pass.text,
-          );
-          log("Before");
-          BlocProvider.of<UserBloc>(context)
-              .add(CreateUserEvent(user: userCred));
-
-          log("After");
+          createAccount(context);
         },
-        child: Container(
+        child:
+            // BlocBuilder<UserBloc, UserBlocState>(
+            //   builder: (context, state) {
+            // if (state is LodingUserBlocState) {
+            //   return const LoadingWidget();
+            // } else {
+            //   return
+            Container(
           height: 49,
           width: double.infinity,
           decoration: BoxDecoration(
             color: (fullnameColor) && (emailColor) && (passwordColor)
                 ? const Color(0xFF32B768)
                 : const Color(0xFFF4F4F4),
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12),
+            ),
           ),
           child: Center(
-            child: Text(
-              'Registration',
-              style: TextStyle(
-                fontSize: 14.0,
-                wordSpacing: 1,
-                letterSpacing: 1.2,
-                fontWeight: FontWeight.w500,
-                color: (fullnameColor) && (emailColor) && (passwordColor)
-                    ? Colors.white
-                    : Color(AppColors.textController),
-              ),
-              textAlign: TextAlign.center,
+            child: BlocBuilder<UserBloc, UserBlocState>(
+              builder: (context, state) {
+                if (state is LodingUserBlocState) {
+                  return const LoadingWidget();
+                } else {
+                  return Text(
+                    'Registration',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      wordSpacing: 1,
+                      letterSpacing: 1.2,
+                      fontWeight: FontWeight.w500,
+                      color: (fullnameColor) && (emailColor) && (passwordColor)
+                          ? Colors.white
+                          : Color(AppColors.textController),
+                    ),
+                    textAlign: TextAlign.center,
+                  );
+                }
+              },
             ),
           ),
         ),
@@ -120,16 +151,14 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     );
   }
 
-  void createAccount() {
+  void createAccount(context) {
     final userCred = User(
       fullname: _fullname.text,
       email: _email.text,
       password: _pass.text,
     );
-    log("Before");
     BlocProvider.of<UserBloc>(context).add(CreateUserEvent(user: userCred));
-
-    log("After");
+    MaterialPageRoute(builder: (BuildContext context) => const MainPage());
   }
 
   Widget navigationButton(context) {
@@ -315,6 +344,39 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: CircularProgressIndicator(
+      color: Colors.white,
+    ));
+  }
+}
+
+class MessageDisplayWidget extends StatelessWidget {
+  final String message;
+  const MessageDisplayWidget({required this.message, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 3,
+      child: Center(
+        child: SingleChildScrollView(
+            child: Text(
+          message,
+          style: const TextStyle(fontSize: 25),
+          textAlign: TextAlign.center,
+        )),
       ),
     );
   }

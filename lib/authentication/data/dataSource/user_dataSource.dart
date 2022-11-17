@@ -19,57 +19,87 @@ class UserRemoteDataSource extends BaseUserRemoteDateSource {
   @override
   Future<Unit> createUser(UserModel userModel) async {
     try {
-      log("before operation signup email  ");
-
       UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: userModel.email, password: userModel.password);
-
-
-
-          log(cred.toString());
-                log("before after signup email  ");
-
-
-      UserModel _user = UserModel(
+      UserModel user = UserModel(
           id: cred.user!.uid,
           email: userModel.email,
           fullname: userModel.fullname,
           password: userModel.password);
-      log("success");
-      print("success");
-
-      // adding user in our database
       await _firestore
           .collection("users")
           .doc(cred.user!.uid)
-          .set(_user.toJson());
+          .set(user.toJson());
     } on FirebaseAuthException catch (e) {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel(
-          statusCode: 404,
-          statusMessage: e.message.toString(),
-          success: false,
-        ),
-        
-      );
+      log(e.message.toString());
       
     }
-    print(Future.value(unit));
     return Future.value(unit);
   }
 
-  @override
   Future<Unit> loginUser(UserModel userModel) async {
-    try {
-      UserCredential cred = await _auth.signInWithEmailAndPassword(
-          email: userModel.email, password: userModel.password);
-    } on FirebaseAuthException catch (e) {
-      throw ServerException(
-          errorMessageModel: ErrorMessageModel(
-              statusCode: 404,
-              statusMessage: e.message.toString(),
-              success: false));
-    }
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    UserCredential cred = await _auth.signInWithEmailAndPassword(
+        email: userModel.email, password: userModel.password);
+
     return Future.value(unit);
   }
 }
+
+Future<Unit> createAccount(UserModel userModel) async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  UserCredential cred = await _auth.createUserWithEmailAndPassword(
+      email: userModel.email, password: userModel.password);
+  UserModel user = UserModel(
+      id: cred.user!.uid,
+      email: userModel.email,
+      fullname: userModel.fullname,
+      password: userModel.password);
+  await _firestore.collection("users").doc(cred.user!.uid).set(user.toJson());
+  log("success");
+
+  return Future.value(unit);
+} 
+
+
+
+  // @override
+  // Future<Unit> createUser(UserModel userModel) async {
+  //   try {
+  //     UserCredential cred = await _auth.createUserWithEmailAndPassword(
+  //         email: userModel.email, password: userModel.password);
+  //     UserModel user = UserModel(
+  //         id: cred.user!.uid,
+  //         email: userModel.email,
+  //         fullname: userModel.fullname,
+  //         password: userModel.password);
+  //     await _firestore
+  //         .collection("users")
+  //         .doc(cred.user!.uid)
+  //         .set(user.toJson());
+  //   } on FirebaseAuthException catch (e) {
+      // throw ServerException(
+      //   errorMessageModel: ErrorMessageModel(
+      //     statusCode: 404,
+      //     statusMessage: e.message.toString(),
+      //     success: false,
+      //   ),
+      // );
+  //   }
+  //   return Future.value(unit);
+  // }
+
+  // Future<Unit> createUser(UserModel userModel) async {
+  //   return createAccount(userModel).then(
+
+  //     throw ServerException(
+  //       errorMessageModel: ErrorMessageModel(
+  //         statusCode: 404,
+  //         statusMessage: "e.message.toString()",
+  //         success: false,
+  //       ),
+  //     ),
+  //   );
+  // }

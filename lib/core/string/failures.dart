@@ -1,5 +1,8 @@
-const String OFFLINE_FAILURE_MESSAGE = "Please check your Internet Connection.";
+class StringFailures {
+  static String OFFLINE_FAILURE_MESSAGE =
+      "Please check your Internet Connection.";
 
-const String SERVER_FAILUERE_MESSAGE = "Please try again later.";
+  static String SERVER_FAILUERE_MESSAGE = "Please try again later.";
 
-const String EMPTY_CACHE_FAILURE_MESSAGE = "No Data";
+  static String EMPTY_CACHE_FAILURE_MESSAGE = "No Data";
+}
