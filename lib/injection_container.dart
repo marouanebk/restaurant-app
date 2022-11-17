@@ -12,9 +12,9 @@ final sl = GetIt.instance;
 
 class ServiceLocator {
   Future<void> init() async {
-
     // Bloc
     sl.registerFactory(() => UserBloc(
+          sl(),
           sl(),
           sl(),
         ));
@@ -23,10 +23,11 @@ class ServiceLocator {
     // Usecases
     sl.registerLazySingleton(() => LoginUseCase(sl()));
     sl.registerLazySingleton(() => CreateUserUseCase(sl()));
+    sl.registerLazySingleton(() => LoginUseCase(sl()));
 
     // Repository
     sl.registerLazySingleton<BaseUserRepository>(() => UserRepository(sl()));
-    
+
     // sl.registerLazySingleton<BaseUserRepository>(() => UserRepository(sl()));
 
     // Datasources
