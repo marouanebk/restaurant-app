@@ -112,11 +112,10 @@ Widget signup_button(context) {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (context) => Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom * 0.5),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom *0.5),
           child: Container(
             height: 576,
-
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -127,7 +126,6 @@ Widget signup_button(context) {
                 horizontal: MediaQuery.of(context).size.width * 0.1,
                 vertical: 40,
               ),
-
               child: const CreateAccountPage(),
             ),
           ),
@@ -166,11 +164,10 @@ Widget login_botton(context) {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (context) => Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom * 0.5),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom *0.5),
           child: Container(
             height: 576,
-
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -180,8 +177,7 @@ Widget login_botton(context) {
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.1,
                     vertical: 40),
-                child: const LoginPage()
-                ),
+                child: const LoginPage()),
           ),
         ),
       );

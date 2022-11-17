@@ -1,9 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurent_app/authentication/domaine/Entities/user.dart';
 
 import 'package:restaurent_app/authentication/forgot%20password/presentation/screens/forgot_password.dart';
 import 'package:restaurent_app/authentication/presentation/components/create_account.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_bloc.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_event.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_state.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/widgets/text_field_input.dart';
+import 'package:restaurent_app/injection_container.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController password = TextEditingController();
   bool emailColor = false;
   bool passwordColor = false;
+  String error = "";
 
   @override
   void dispose() {
@@ -28,41 +37,70 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return BlocProvider(
+      create: (context) => sl<UserBloc>(),
+      child: Builder(builder: (context) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            navigation_button(context),
-            login_text(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                navigation_button(context),
+                login_text(),
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 15),
+            ),
+            controllerLabel(email, "Email Adress", emailColor),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
+            controller(email, 'Eg namaemail@emailkamu.com', false, 1),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
+            controllerLabel(password, "Password", passwordColor),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
+            controller(password, '**************', true, 2),
+            const SizedBox(
+              height: 5,
+            ),
+            forget_password(context),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
+            BlocListener<UserBloc, UserBlocState>(
+              listener: (context, state) {
+                if (state is ErrorUserBlocState) {
+                  setState(() {
+                    error = state.message;
+                  });
+                } else if (state is MessageUserBlocState) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const BaseScreen()),
+                      (Route<dynamic> route) => false);
+                }
+              },
+              child: SizedBox(
+                height: 38,
+                child: Center(
+                  child: Text(
+                    error,
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ),
+            login_botton(context),
+            login_google(context),
           ],
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 15),
-        ),
-        controllerLabel(email, "Email Adress", emailColor),
-        const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-        controller(email, 'Eg namaemail@emailkamu.com', false, 1),
-        const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
-        controllerLabel(password, "Password", passwordColor),
-        const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-        controller(password, '**************', true, 2),
-        const SizedBox(
-          height: 5,
-        ),
-        forget_password(context),
-        const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-        const SizedBox(
-          height: 38,
-        ),
-        login_botton(context),
-        login_google(context),
-      ],
+        );
+      }),
     );
   }
 
@@ -101,21 +139,24 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
-          builder: (context) => Container(
-            // height: MediaQuery.of(context).size.height * 0.75,
-            height: 576,
-
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(36), topRight: Radius.circular(36)),
-              // border: Border.all(color: Colors.blueAccent),
+          builder: (context) => Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom * 0.5,
             ),
-            child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.1,
-                    vertical: 40),
-                child: const CreateAccountPage()),
+            child: Container(
+              height: 576,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(36),
+                    topRight: Radius.circular(36)),
+              ),
+              child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: 40),
+                  child: const CreateAccountPage()),
+            ),
           ),
         );
       },
@@ -229,9 +270,13 @@ class _LoginPageState extends State<LoginPage> {
       ),
       child: TextButton(
         onPressed: () {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const BaseScreen()),
-              (Route<dynamic> route) => false);
+          if (emailColor && passwordColor) {
+            loginAccount(context);
+          } else {
+            setState(() {
+              error = "FILL IN THE MISSING FIELDS";
+            });
+          }
         },
         child: Container(
           height: 49,
@@ -243,21 +288,42 @@ class _LoginPageState extends State<LoginPage> {
             borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
           child: Center(
-            child: Text(
-              'Login',
-              style: TextStyle(
-                fontSize: 14.0,
-                wordSpacing: 1,
-                letterSpacing: 1.2,
-                fontWeight: FontWeight.w500,
-                color: (emailColor) && (passwordColor)
-                    ? Colors.white
-                    : Color(AppColors.textController),
-              ),
-              textAlign: TextAlign.center,
+            child: BlocBuilder<UserBloc, UserBlocState>(
+              builder: (context, state) {
+                if (state is LodingUserBlocState) {
+                  return const LoadingWidget();
+                } else {
+                  return Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      wordSpacing: 1,
+                      letterSpacing: 1.2,
+                      fontWeight: FontWeight.w500,
+                      color: (emailColor) && (passwordColor)
+                          ? Colors.white
+                          : Color(AppColors.textController),
+                    ),
+                    textAlign: TextAlign.center,
+                  );
+                }
+              },
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void loginAccount(context) {
+    final userCred = User(
+      fullname: "",
+      email: email.text,
+      password: password.text,
+    );
+    BlocProvider.of<UserBloc>(context).add(
+      LoginuserEvent(
+        user: userCred,
       ),
     );
   }

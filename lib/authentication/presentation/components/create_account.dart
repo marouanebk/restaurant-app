@@ -10,6 +10,7 @@ import 'package:restaurent_app/authentication/presentation/controller/bloc/user_
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/widgets/text_field_input.dart';
 import 'package:restaurent_app/injection_container.dart';
+import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/main_page.dart';
 
 class CreateAccountPage extends StatefulWidget {
@@ -72,27 +73,35 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     error = state.message;
                   });
                 } else if (state is MessageUserBlocState) {
-                  setState(() {
-                    error = state.message;
-                  });
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const BaseScreen()),
+                      (Route<dynamic> route) => false);
                 }
               },
-              child: SizedBox(
-                height: 30,
-                child: Center(
-                  child: Text(
-                    error,
-                    style: const TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.w900),
-                  ),
-                ),
-              ),
+              child: errorBox(),
             ),
             registrationButton(context),
             registerGoogle(context),
           ],
         );
       }),
+    );
+  }
+
+  Widget errorBox() {
+    return SizedBox(
+      height: 30,
+      child: Center(
+        child: Text(
+          error,
+          style: const TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.w900,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 
@@ -103,16 +112,15 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       ),
       child: TextButton(
         onPressed: () {
-          createAccount(context);
+          if (fullnameColor && emailColor && passwordColor) {
+            createAccount(context);
+          } else {
+            setState(() {
+              error = "fill the missing field";
+            });
+          }
         },
-        child:
-            // BlocBuilder<UserBloc, UserBlocState>(
-            //   builder: (context, state) {
-            // if (state is LodingUserBlocState) {
-            //   return const LoadingWidget();
-            // } else {
-            //   return
-            Container(
+        child: Container(
           height: 49,
           width: double.infinity,
           decoration: BoxDecoration(
@@ -158,7 +166,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       password: _pass.text,
     );
     BlocProvider.of<UserBloc>(context).add(CreateUserEvent(user: userCred));
-    MaterialPageRoute(builder: (BuildContext context) => const MainPage());
   }
 
   Widget navigationButton(context) {
@@ -169,23 +176,23 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           context: context,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
-          builder: (context) => Container(
-            // height: MediaQuery.of(context).size.height * 0.75,
-            height: 576,
-
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(36), topRight: Radius.circular(36)),
-              // border: Border.all(color: Colors.blueAccent),
+          builder: (context) => Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom * 0.5),
+            child: Container(
+              height: 576,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(36),
+                    topRight: Radius.circular(36)),
+              ),
+              child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                      vertical: 40),
+                  child: const LoginPage()),
             ),
-            child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.1,
-                    vertical: 40),
-                child: LoginPage()
-                // child: Column(children: [Text("helo")]),
-                ),
           ),
         );
       },
