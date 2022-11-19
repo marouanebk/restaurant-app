@@ -44,7 +44,7 @@ class _MainPageState extends State<MainPage> {
                 const SizedBox(
                   height: 16,
                 ),
-                TodayArrivals(),
+                const TodayArrivals(),
                 const SizedBox(
                   height: 36,
                 ),
@@ -87,9 +87,10 @@ Widget searchBar(search) {
 
 Widget firstPadding() {
   return Padding(
-    padding: const EdgeInsets.only(right: 15, top: 42),
+    padding: const EdgeInsets.only(right: 15, top: 21),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
       children: [
         IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
         const Text(
