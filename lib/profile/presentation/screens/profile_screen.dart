@@ -1,7 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:restaurent_app/core/utils/const/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurent_app/authentication/presentation/components/create_account.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_bloc.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_event.dart';
+import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_state.dart';
+import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
+import 'package:restaurent_app/injection_container.dart';
 import 'package:restaurent_app/profile/presentation/components/row_container.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -9,34 +15,55 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24, top: 60),
-          child: Column(
-            children: [
-              firstContainer(),
-              SizedBox(
-                height: 40,
+    return BlocProvider(
+      create: (_) => sl<UserBloc>(),
+      child: Builder(builder: (context) {
+        return Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 24.0, right: 24, top: 60),
+              child: Column(
+                children: [
+                  firstContainer(),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  secondContainer(),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  thirdContainer(),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  forthContainer(context),
+                  BlocListener<UserBloc, UserBlocState>(
+                    listener: (context, state) {
+                      if (state is SignOut) {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const Authenticationpage()),
+                            (Route<dynamic> route) => false);
+                      } else if (state is ErrorUserBlocState) {
+                        log(state.message);
+                      }
+                    },
+                    child: const SizedBox(
+                      height: 40,
+                    ),
+                  )
+                ],
               ),
-              secondContainer(),
-              SizedBox(
-                height: 12,
-              ),
-              thirdContainer(),
-              SizedBox(
-                height: 40,
-              ),
-              forthContainer(),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
 
-Container firstContainer() {
+Widget firstContainer() {
   return Container(
     width: double.infinity,
     height: 70,
@@ -70,7 +97,7 @@ Container firstContainer() {
                 ),
                 textAlign: TextAlign.start,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 2,
               ),
               const Text(
@@ -92,14 +119,14 @@ Container firstContainer() {
           height: 40,
           decoration: const BoxDecoration(
               color: Color(0xFFF9F9F9), shape: BoxShape.circle),
-          child: Icon(Icons.notifications),
+          child: const Icon(Icons.notifications),
         ),
       ],
     ),
   );
 }
 
-Container secondContainer() {
+Widget secondContainer() {
   return Container(
     width: double.infinity,
     height: 70,
@@ -112,8 +139,8 @@ Container secondContainer() {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         RichText(
-          text: TextSpan(
-            style: const TextStyle(
+          text: const TextSpan(
+            style: TextStyle(
               fontSize: 18.0,
               wordSpacing: 1,
               letterSpacing: 1.2,
@@ -127,19 +154,19 @@ Container secondContainer() {
                   size: 24,
                 ),
               ),
-              const TextSpan(
+              TextSpan(
                 text: "  Account setting",
               ),
             ],
           ),
         ),
-        Icon(Icons.edit_note_sharp)
+        const Icon(Icons.edit_note_sharp)
       ],
     ),
   );
 }
 
-Container thirdContainer() {
+Widget thirdContainer() {
   return Container(
     width: double.infinity,
     height: 204,
@@ -150,28 +177,28 @@ Container thirdContainer() {
     ),
     child: Column(
       children: [
-        RowContainer(
+        const RowContainer(
           iconname: Icons.text_snippet_rounded,
           title: "Language",
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        RowContainer(
+        const RowContainer(
           iconname: Icons.chat,
           title: "Feedback",
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        RowContainer(
+        const RowContainer(
           iconname: Icons.star_outline_outlined,
           title: "Rate us",
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        RowContainer(
+        const RowContainer(
           iconname: Icons.arrow_circle_up,
           title: "Account version",
         ),
@@ -180,25 +207,36 @@ Container thirdContainer() {
   );
 }
 
-Container forthContainer() {
-  return Container(
-    width: 111,
-    height: 35,
-    decoration: BoxDecoration(
-      color: Color(0xFFEB4646),
-      borderRadius: BorderRadius.circular(11.0),
-    ),
-    child: Center(
-      child: Text(
-        "Logout",
-        style: TextStyle(
-          fontSize: 16.0,
-          wordSpacing: 1,
-          letterSpacing: 1.2,
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-        ),
-        textAlign: TextAlign.center,
+Widget forthContainer(context) {
+  return InkWell(
+    onTap: () {
+      BlocProvider.of<UserBloc>(context).add(const LogOutUserEvent());
+    },
+    child: Container(
+      width: 111,
+      height: 35,
+      decoration: BoxDecoration(
+        color: const Color(0xFFEB4646),
+        borderRadius: BorderRadius.circular(11.0),
+      ),
+      child: Center(
+        child: BlocBuilder<UserBloc, UserBlocState>(builder: (context, state) {
+          if (state is LodingUserBlocState) {
+            return const LoadingWidget();
+          } else {
+            return const Text(
+              "Logout",
+              style: TextStyle(
+                fontSize: 16.0,
+                wordSpacing: 1,
+                letterSpacing: 1.2,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            );
+          }
+        }),
       ),
     ),
   );

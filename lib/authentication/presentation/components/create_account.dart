@@ -11,7 +11,6 @@ import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/widgets/text_field_input.dart';
 import 'package:restaurent_app/injection_container.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';
-import 'package:restaurent_app/mainpage/presentation/screens/main_page.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});

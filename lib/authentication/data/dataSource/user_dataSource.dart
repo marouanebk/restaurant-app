@@ -7,6 +7,7 @@ abstract class BaseUserRemoteDateSource {
   Future<Unit> createUser(UserModel userModel);
   Future<Unit> loginUser(UserModel userModel);
   Future<Unit> logOutUser();
+  Future<bool> authenticationState();
 }
 
 class UserRemoteDataSource extends BaseUserRemoteDateSource {
@@ -37,10 +38,26 @@ class UserRemoteDataSource extends BaseUserRemoteDateSource {
     return Future.value(unit);
   }
 
-   @override
+  @override
   Future<Unit> logOutUser() async {
     await _auth.signOut();
 
     return Future.value(unit);
+  }
+
+  @override
+  Future<bool> authenticationState() {
+     Future<bool> temp  = Future.value(false);
+    var user = _auth.authStateChanges().listen(
+      (User? user) {
+        if (user == null) {
+           temp = Future.value(false);
+        } else {
+           temp = Future.value(true);
+        }
+      },
+    );
+
+    return temp;
   }
 }

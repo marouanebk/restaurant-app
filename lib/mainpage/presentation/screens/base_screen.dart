@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/history/presentation/screens/booking_history.dart';
@@ -11,11 +8,9 @@ import 'package:restaurent_app/profile/presentation/screens/profile_screen.dart'
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
-
   @override
   State<BaseScreen> createState() => _BaseScreenState();
 }
-
 class _BaseScreenState extends State<BaseScreen> {
   var _controller = PersistentTabController(initialIndex: 0);
 
@@ -30,7 +25,6 @@ class _BaseScreenState extends State<BaseScreen> {
       // SettingsScreen()
     ];
   }
-
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(

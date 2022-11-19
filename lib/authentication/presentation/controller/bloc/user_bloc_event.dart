@@ -16,14 +16,20 @@ class CreateUserEvent extends UserBlocEvent {
   @override
   List<Object> get props => [user];
 }
-class LogOutUserEvent extends UserBlocEvent {
 
+class LogOutUserEvent extends UserBlocEvent {
   const LogOutUserEvent();
 
   @override
   List<Object> get props => [];
 }
 
+class AuthenticationEvent extends UserBlocEvent {
+  const AuthenticationEvent();
+
+  @override
+  List<Object> get props => [];
+}
 
 class LoginuserEvent extends UserBlocEvent {
   final User user;
@@ -33,7 +39,3 @@ class LoginuserEvent extends UserBlocEvent {
   @override
   List<Object> get props => [user];
 }
-
-
-
-

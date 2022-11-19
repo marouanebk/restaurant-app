@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/mainpage/presentation/component/booking_restaurants.dart';
 import 'package:restaurent_app/mainpage/presentation/component/description.dart';

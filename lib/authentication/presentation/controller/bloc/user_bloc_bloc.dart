@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurent_app/authentication/domaine/UseCase/authentication_state_usecase.dart';
 import 'package:restaurent_app/authentication/domaine/UseCase/create_user_usercase.dart';
 import 'package:restaurent_app/authentication/domaine/UseCase/login_usercase.dart';
 import 'package:restaurent_app/authentication/domaine/UseCase/logout_usecase.dart';
@@ -13,13 +14,15 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
   final LoginUseCase loginUserCase;
   final CreateUserUseCase createUserUseCase;
   final LogOutUseCase logOutUseCase;
+  final AuthenticationState authenticationState;
 
   //   BaseUserRemoteDateSource baseUserRemoteDateSource =
   //     UserRemoteDataSource();
   // BaseUserRepository baseUserRepository =
   //     UserRepository(baseUserRemoteDateSource);
 
-  UserBloc(this.loginUserCase, this.createUserUseCase, this.logOutUseCase)
+  UserBloc(this.loginUserCase, this.createUserUseCase, this.logOutUseCase,
+      this.authenticationState)
       : super(UserBlocStateInitial()) {
     on<UserBlocEvent>((event, emit) async {
       if (event is CreateUserEvent) {
@@ -36,29 +39,15 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
       } else if (event is LogOutUserEvent) {
         emit(LodingUserBlocState());
         final failuerOrDoneMessage = await logOutUseCase();
-        emit(_eitherDoneMessageOrErrorState(
-            result: failuerOrDoneMessage, message: DC));
+        emit(_logOut(result: failuerOrDoneMessage, message: DC));
+      } else if (event is AuthenticationEvent) {
+        emit(LodingUserBlocState());
+        final failuerOrDoneMessage = await authenticationState();
+        emit(
+          _authenticationState(result: failuerOrDoneMessage, message: statestuff),
+        );
       }
     });
-  }
-  String _mapFailureToMessage(Failure failure) {
-    switch (failure.message) {
-      case "user-not-found":
-        return "Invalid Creds";
-      case "wrong-passord":
-        return "Wrong Password";
-      case "invalid-email":
-        return "Invalid Email Adress";
-      case "user-disabled":
-        return "User Disables";
-      case "email-already-in-use":
-        return "Email Already In Use";
-      case "operation-not-allowed":
-        return "Error";
-      case "weak-password":
-        return "Weak Password";
-    }
-    return "Uknown Error ";
   }
 
   UserBlocState _eitherDoneMessageOrErrorState(
@@ -66,18 +55,50 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
     return result.fold(
         (l) => ErrorUserBlocState(message: _mapFailureToMessage(l)),
         (r) => const MessageUserBlocState(message: ADD_SUCCESS_MESSAGE));
+  }
 
-    //     topRatedState: RequestState.error, topRatedmessage: l.message)),
+  UserBlocState _logOut(
+      {required Either<Failure, Unit> result, required String message}) {
+    return result.fold(
+        (l) => ErrorUserBlocState(message: _mapFailureToMessage(l)),
+        (r) => SignOut());
+  }
 
-    // (failuer) => ErrorUserBlocState(message: _mapFailureToMessage(failuer)),
-    // (_) => const MessageUserBlocState(message: ADD_SUCCESS_MESSAGE));
+  UserBlocState _authenticationState(
+      {required Either<Failure, bool> result, required String message}) {
+    return result.fold(
+      (l) => const ErrorUserBlocState(
+        message: 'uknown Error',
+      ),
+      (r) {
+        UserBlocState temp = AuthenticatedState();
+        if (r) {
+          temp = AuthenticatedState();
+        } else if (r == false) {
+          temp = UnAuthenticatedState();
+        }
+        return temp;
+      },
+    );
   }
 }
 
-// result.fold(
-//         (l) => emit(state.copyWith(
-//             topRatedState: RequestState.error, topRatedmessage: l.message)),
-//         (r) => emit(state.copyWith(
-//             topRatedMovies: r, topRatedState: RequestState.loaded)));
-
-//  s
+String _mapFailureToMessage(Failure failure) {
+  switch (failure.message) {
+    case "user-not-found":
+      return "Invalid Creds";
+    case "wrong-passord":
+      return "Wrong Password";
+    case "invalid-email":
+      return "Invalid Email Adress";
+    case "user-disabled":
+      return "User Disables";
+    case "email-already-in-use":
+      return "Email Already In Use";
+    case "operation-not-allowed":
+      return "Error";
+    case "weak-password":
+      return "Weak Password";
+  }
+  return "Uknown Error ";
+}

@@ -55,3 +55,10 @@ class MessageUserBlocState extends UserBlocState {
   @override
   List<Object> get props => [message];
 }
+
+class AuthenticatedState extends UserBlocState {}
+
+class UnAuthenticatedState extends UserBlocState {}
+
+class SignOut extends UserBlocState {}
+
