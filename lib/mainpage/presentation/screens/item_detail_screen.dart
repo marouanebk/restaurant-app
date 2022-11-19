@@ -23,59 +23,20 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 54,
-                      decoration: BoxDecoration(
-                        color: Color(AppColors.mainGreen),
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(16.0),
-                            bottomRight: Radius.circular(16.0)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 12.0, right: 12),
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                splashRadius: 24,
-                                icon: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.white,
-                                  size: 24,
-                                )),
-                            Spacer(),
-                            Text(
-                              'Details Restaurant',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                wordSpacing: 1,
-                                letterSpacing: 1.2,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
+                    screenTitle(context),
+                    const SizedBox(
                       height: 8,
                     ),
                     firstContainer(context),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 20, right: 22, left: 22),
-                      decoration: BoxDecoration(
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 22),
+                      decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius: const BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(16.0),
                             topRight: Radius.circular(16.0)),
                       ),
@@ -89,7 +50,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                           const SizedBox(
                             height: 36,
                           ),
-                          BookingRestaurant(),
+                          const BookingRestaurant(),
                         ],
                       ),
                     ),
@@ -97,7 +58,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                 ),
               ),
             ),
-            bottom_bar(),
+            bottomBar(),
           ],
         ),
       ),
@@ -109,7 +70,7 @@ Widget firstContainer(BuildContext context) {
   return Container(
     width: double.infinity,
     height: 358,
-    padding: EdgeInsets.only(top: 20, left: 18, right: 18),
+    padding: const EdgeInsets.only(top: 20, left: 18, right: 18),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(16.0),
@@ -118,7 +79,7 @@ Widget firstContainer(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Tava Restaurant',
           style: TextStyle(
             fontSize: 20.0,
@@ -151,12 +112,11 @@ Widget firstContainer(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 24,
         ),
         Container(
           height: 182,
-          // width: double.infinity,
           width: double.infinity,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(
@@ -171,7 +131,7 @@ Widget firstContainer(BuildContext context) {
                 ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 24,
         ),
         Row(
@@ -203,10 +163,10 @@ Widget firstContainer(BuildContext context) {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   '10:00 AM - 12:00 PM',
                   style: TextStyle(
                     fontSize: 12.0,
@@ -226,8 +186,8 @@ Widget firstContainer(BuildContext context) {
                 ));
               },
               child: RichText(
-                text: TextSpan(
-                  style: const TextStyle(
+                text: const TextSpan(
+                  style: TextStyle(
                     fontSize: 12.0,
                     wordSpacing: 1,
                     letterSpacing: 1.2,
@@ -242,7 +202,7 @@ Widget firstContainer(BuildContext context) {
                         color: Color(0xFF2C8DFF),
                       ),
                     ),
-                    const TextSpan(
+                    TextSpan(
                       text: "Visit the Restaurant",
                     ),
                   ],
@@ -256,13 +216,13 @@ Widget firstContainer(BuildContext context) {
   );
 }
 
-Container bottom_bar() {
+Container bottomBar() {
   return Container(
     height: 85,
     width: double.infinity,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       color: Colors.white,
-      borderRadius: const BorderRadius.only(
+      borderRadius:  BorderRadius.only(
           topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
     ),
     child: Center(
@@ -272,12 +232,55 @@ Container bottom_bar() {
         decoration: BoxDecoration(
             color: Color(AppColors.mainGreen),
             borderRadius: BorderRadius.circular(10)),
-        child: Center(
+        child: const Center(
           child: Text(
             "Booking",
             style: TextStyle(color: Colors.white),
           ),
         ),
+      ),
+    ),
+  );
+}
+
+Widget screenTitle(context) {
+  return Container(
+    width: double.infinity,
+    height: 54,
+    decoration: BoxDecoration(
+      color: Color(AppColors.mainGreen),
+      borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(16.0),
+          bottomRight: Radius.circular(16.0)),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 12.0, right: 24),
+      child: Row(
+        children: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              splashRadius: 24,
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 24,
+              )),
+          const Spacer(),
+          const Text(
+            'Details Restaurant',
+            style: TextStyle(
+              fontSize: 12.0,
+              wordSpacing: 1,
+              letterSpacing: 1.2,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const Spacer(),
+        ],
       ),
     ),
   );

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurent_app/authentication/data/Models/user_model.dart';
@@ -8,6 +10,7 @@ abstract class BaseUserRemoteDateSource {
   Future<Unit> loginUser(UserModel userModel);
   Future<Unit> logOutUser();
   Future<bool> authenticationState();
+  Future<UserModel> getUserDetails();
 }
 
 class UserRemoteDataSource extends BaseUserRemoteDateSource {
@@ -47,17 +50,35 @@ class UserRemoteDataSource extends BaseUserRemoteDateSource {
 
   @override
   Future<bool> authenticationState() {
-     Future<bool> temp  = Future.value(false);
+    Future<bool> temp = Future.value(false);
     var user = _auth.authStateChanges().listen(
       (User? user) {
         if (user == null) {
-           temp = Future.value(false);
+          temp = Future.value(false);
         } else {
-           temp = Future.value(true);
+          temp = Future.value(true);
         }
       },
     );
 
     return temp;
+  }
+
+  @override
+  Future<UserModel> getUserDetails() async {
+    String uid = _auth.currentUser!.uid;
+
+    var collection = FirebaseFirestore.instance.collection('users');
+    var docSnapshot = await collection.doc(uid).get();
+    Map<String, dynamic>? data = docSnapshot.data();
+
+    final UserModel userModel = UserModel(
+      fullname: data?["fullname"],
+      email: data?["email"],
+      password: data?["password"],
+    );
+    // var value = data?['some_field'];
+
+    return userModel;
   }
 }

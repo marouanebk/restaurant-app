@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurent_app/authentication/data/Models/user_model.dart';
 import 'package:restaurent_app/authentication/domaine/UseCase/authentication_state_usecase.dart';
 import 'package:restaurent_app/authentication/domaine/UseCase/create_user_usercase.dart';
+import 'package:restaurent_app/authentication/domaine/UseCase/get_user_details_usercase.dart';
 import 'package:restaurent_app/authentication/domaine/UseCase/login_usercase.dart';
 import 'package:restaurent_app/authentication/domaine/UseCase/logout_usecase.dart';
 import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_event.dart';
@@ -15,6 +17,7 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
   final CreateUserUseCase createUserUseCase;
   final LogOutUseCase logOutUseCase;
   final AuthenticationState authenticationState;
+  final GetUserDetailsUseCase getUserDetailsUseCase;
 
   //   BaseUserRemoteDateSource baseUserRemoteDateSource =
   //     UserRemoteDataSource();
@@ -22,7 +25,7 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
   //     UserRepository(baseUserRemoteDateSource);
 
   UserBloc(this.loginUserCase, this.createUserUseCase, this.logOutUseCase,
-      this.authenticationState)
+      this.authenticationState, this.getUserDetailsUseCase)
       : super(UserBlocStateInitial()) {
     on<UserBlocEvent>((event, emit) async {
       if (event is CreateUserEvent) {
@@ -44,7 +47,13 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
         emit(LodingUserBlocState());
         final failuerOrDoneMessage = await authenticationState();
         emit(
-          _authenticationState(result: failuerOrDoneMessage, message: statestuff),
+          _authenticationState(
+              result: failuerOrDoneMessage, message: statestuff),
+        );
+      } else if (event is UserDetailsEvent) {
+        final failuerOrDoneMessage = await getUserDetailsUseCase();
+        emit(
+          _userDetails(result: failuerOrDoneMessage, message: statestuff),
         );
       }
     });
@@ -62,6 +71,13 @@ class UserBloc extends Bloc<UserBlocEvent, UserBlocState> {
     return result.fold(
         (l) => ErrorUserBlocState(message: _mapFailureToMessage(l)),
         (r) => SignOut());
+  }
+
+  UserBlocState _userDetails(
+      {required Either<Failure, UserModel> result, required String message}) {
+    return result.fold(
+        (l) => ErrorUserBlocState(message: _mapFailureToMessage(l)),
+        (r) => UserDetailsState(fullname: r.fullname, email: r.email));
   }
 
   UserBlocState _authenticationState(

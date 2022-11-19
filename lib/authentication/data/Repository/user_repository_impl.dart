@@ -1,10 +1,7 @@
 import 'dart:developer';
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurent_app/authentication/data/Models/user_model.dart';
 import 'package:restaurent_app/authentication/data/dataSource/user_dataSource.dart';
-import 'package:restaurent_app/authentication/domaine/Entities/user.dart';
 import 'package:restaurent_app/authentication/domaine/Repository/user_repository.dart';
 import '../../../../core/error/failure.dart';
 import 'package:dartz/dartz.dart';
@@ -65,14 +62,22 @@ class UserRepository implements BaseUserRepository {
 
   @override
   Future<Either<Failure, bool>> authenticationState() async {
-      try {
+    try {
       final result = await baseUserRemoteDateSource.authenticationState();
       return Right(result);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
+  }
 
+  @override
+  Future<Either<Failure, UserModel>> getUserDetails() async {
+    try {
+      final result = await baseUserRemoteDateSource.getUserDetails();
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 }
 
-// [log] user-not-found

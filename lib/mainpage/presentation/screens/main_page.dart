@@ -55,6 +55,9 @@ class _MainPageState extends State<MainPage> {
                   height: 36,
                 ),
                 const BookingRestaurant(),
+                const SizedBox(
+                  height: 36,
+                )
               ],
             ),
           ),
@@ -90,7 +93,6 @@ Widget firstPadding() {
     padding: const EdgeInsets.only(right: 15, top: 21),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
       children: [
         IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
         const Text(
@@ -107,8 +109,10 @@ Widget firstPadding() {
         Container(
           height: 32,
           width: 32,
-          decoration:
-              const BoxDecoration(color: Colors.black, shape: BoxShape.circle),
+          decoration: const BoxDecoration(
+            color: Colors.black,
+            shape: BoxShape.circle,
+          ),
         ),
       ],
     ),

@@ -20,7 +20,7 @@ class _OrderHistoryState extends State<OrderHistory> {
           height: 6,
         ),
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
 
         // scrollDirection: Axis.vertical,
         // padding: const EdgeInsets.only(right: 12.0),

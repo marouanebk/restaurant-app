@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurent_app/authentication/presentation/components/create_account.dart';
@@ -16,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<UserBloc>(),
+      create: (_) => sl<UserBloc>()..add(const UserDetailsEvent()),
       child: Builder(builder: (context) {
         return Scaffold(
           body: SafeArea(
@@ -24,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 24.0, right: 24, top: 60),
               child: Column(
                 children: [
-                  firstContainer(),
+                  firstContainer(context),
                   const SizedBox(
                     height: 40,
                   ),
@@ -63,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget firstContainer() {
+Widget firstContainer(context) {
   return Container(
     width: double.infinity,
     height: 70,
@@ -81,38 +80,46 @@ Widget firstContainer() {
           decoration:
               const BoxDecoration(color: Colors.black, shape: BoxShape.circle),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Marouane bk",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  wordSpacing: 1,
-                  letterSpacing: 1.2,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF374151),
+        BlocBuilder<UserBloc, UserBlocState>(
+          builder: (context, state) {
+            if (state is UserDetailsState) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      state.fullname,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        wordSpacing: 1.5,
+                        letterSpacing: 1.5,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF374151),
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Text(
+                      state.email,
+                      style: const TextStyle(
+                        fontSize: 10.0,
+                        wordSpacing: 1.5,
+                        letterSpacing: 1.5,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xFF6B7280),
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
                 ),
-                textAlign: TextAlign.start,
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              const Text(
-                "marouaneboukandoura@gmail.com",
-                style: TextStyle(
-                  fontSize: 10.0,
-                  wordSpacing: 1,
-                  letterSpacing: 1.2,
-                  fontWeight: FontWeight.normal,
-                  color: Color(0xFF6B7280),
-                ),
-                textAlign: TextAlign.start,
-              ),
-            ],
-          ),
+              );
+            } else {
+              return Container();
+            }
+          },
         ),
         Container(
           width: 40,

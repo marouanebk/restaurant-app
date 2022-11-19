@@ -62,3 +62,12 @@ class UnAuthenticatedState extends UserBlocState {}
 
 class SignOut extends UserBlocState {}
 
+class UserDetailsState extends UserBlocState {
+  final String fullname;
+  final String email;
+
+  const UserDetailsState({required this.fullname , required this.email});
+  @override
+  List<Object> get props => [fullname , email];
+}
+
