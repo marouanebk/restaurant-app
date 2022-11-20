@@ -1,7 +1,5 @@
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:restaurent_app/core/error/exceptions.dart';
 import 'package:restaurent_app/core/error/failure.dart';
 import 'package:restaurent_app/mainpage/data/DataSource/food_remote_datasource.dart';
 import 'package:restaurent_app/mainpage/domaine/Entities/food.dart';
@@ -18,7 +16,7 @@ class FoodsRepository extends BaseFoodRepository {
     try {
       return Right(result);
     }catch (failure) {
-      return Left(ServerFailure(".statusMessage"));
+      return const Left(ServerFailure(".statusMessage"));
     }
   }
 

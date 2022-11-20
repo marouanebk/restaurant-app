@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dartz/dartz.dart';
 import 'package:restaurent_app/authentication/data/Models/user_model.dart';
 import 'package:restaurent_app/authentication/domaine/Entities/user.dart';

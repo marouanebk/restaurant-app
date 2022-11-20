@@ -28,8 +28,8 @@ class _TypeDescriptionState extends State<TypeDescription> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${widget.type}",
-                style: TextStyle(
+                widget.type,
+                style: const TextStyle(
                   fontSize: 16.0,
                   wordSpacing: 1,
                   letterSpacing: 1.2,
@@ -42,7 +42,7 @@ class _TypeDescriptionState extends State<TypeDescription> {
                 height: 5,
               ),
               Text(
-                "${widget.subType}",
+                widget.subType,
                 style: TextStyle(
                   fontSize: 12.0,
                   wordSpacing: 1,
@@ -64,7 +64,7 @@ class _TypeDescriptionState extends State<TypeDescription> {
                 color: Color(widget.color),
               ),
               children: [
-                TextSpan(
+                const TextSpan(
                   text: "See More ",
                 ),
                 WidgetSpan(

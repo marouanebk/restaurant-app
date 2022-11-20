@@ -81,7 +81,7 @@ class _TodayArrivalsState extends State<TodayArrivals> {
 
 Widget picture(pic) {
   return InkWell(
-    child: Container(
+    child: SizedBox(
       height: 103.3,
       width: 128,
       child: CachedNetworkImage(

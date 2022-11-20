@@ -33,9 +33,9 @@ class BookingHistoryScreen extends StatelessWidget {
                 height: 43,
                 width: 142,
                 child: Row(
-                  children: [
-                    const Icon(Icons.add),
-                    const Text(
+                  children: const [
+                    Icon(Icons.add),
+                    Text(
                       'Booking more',
                       style: TextStyle(
                         fontSize: 16.0,
@@ -48,7 +48,9 @@ class BookingHistoryScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 36,)
+              const SizedBox(
+                height: 36,
+              )
             ],
           ),
         ),

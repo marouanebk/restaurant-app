@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restaurent_app/authentication/forgot%20password/presentation/screens/second_success_page.dart';
-import 'package:restaurent_app/authentication/forgot%20password/presentation/screens/success_operation.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/widgets/text_field_input.dart';
 
@@ -39,7 +38,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
 
@@ -54,7 +53,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 56,
               ),
               // const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
@@ -71,16 +70,17 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 5)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
               Container(
                 height: 49,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  border: Border.all(color: Color(0xFFBEC5D1)),
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  border: Border.all(color: const Color(0xFFBEC5D1)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
                   child: TextFieldInput(
                     hintText: '**************',
                     textEditingController: pass1,
@@ -90,7 +90,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
@@ -106,16 +106,17 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 5)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
               Container(
                 height: 49,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  border: Border.all(color: Color(0xFFBEC5D1)),
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  border: Border.all(color: const Color(0xFFBEC5D1)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
                   child: TextFieldInput(
                     hintText: '**************',
                     textEditingController: pass2,
@@ -125,19 +126,19 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 1,
               ), // <-- Spacer
 
               // Expanded(child: SizedBox.shrink()), // <-- Expanded
 
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+                padding: const EdgeInsets.symmetric(vertical: 60),
                 child: TextButton(
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                            builder: (context) => SecondSucessPage()),
+                            builder: (context) => const SecondSucessPage()),
                         (Route<dynamic> route) => false);
                   },
                   child: Container(

@@ -15,7 +15,7 @@ PageModel pageThree() {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Padding(
@@ -30,10 +30,9 @@ PageModel pageThree() {
               ),
             ]),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
-
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 45.0),
             child: Align(
@@ -69,9 +68,6 @@ PageModel pageThree() {
               ),
             ),
           ),
-          // const Spacer(
-          //   flex: 1,
-          // ),
           const Padding(
             padding: EdgeInsets.symmetric(
               vertical: 15.0,

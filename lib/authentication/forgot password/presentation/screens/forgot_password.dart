@@ -36,7 +36,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
 
@@ -51,7 +51,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 56,
               ),
               // const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
@@ -68,26 +68,26 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 textAlign: TextAlign.start,
               ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 5)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
               Container(
                 height: 49,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  border: Border.all(color: Color(0xFFBEC5D1)),
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  border: Border.all(color: const Color(0xFFBEC5D1)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
                   child: TextFieldInput(
                     hintText: 'Eg namaemail@emailkamu.com',
                     textEditingController: email,
                     textInputType: TextInputType.text,
-                    onChangedFunc: (value) {
-                    },
+                    onChangedFunc: (value) {},
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               RichText(
@@ -108,19 +108,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ],
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 1,
               ), // <-- Spacer
 
               // Expanded(child: SizedBox.shrink()), // <-- Expanded
 
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
+                padding: const EdgeInsets.symmetric(vertical: 60),
                 child: TextButton(
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                            builder: (context) => SuccessScreen()),
+                            builder: (context) => const SuccessScreen()),
                         (Route<dynamic> route) => false);
                   },
                   child: Container(

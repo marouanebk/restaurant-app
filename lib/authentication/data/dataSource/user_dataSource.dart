@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurent_app/authentication/data/Models/user_model.dart';
@@ -33,7 +31,7 @@ class UserRemoteDataSource extends BaseUserRemoteDateSource {
 
   @override
   Future<Unit> loginUser(UserModel userModel) async {
-    UserCredential cred = await _auth.signInWithEmailAndPassword(
+    await _auth.signInWithEmailAndPassword(
       email: userModel.email,
       password: userModel.password,
     );
@@ -51,7 +49,7 @@ class UserRemoteDataSource extends BaseUserRemoteDateSource {
   @override
   Future<bool> authenticationState() {
     Future<bool> temp = Future.value(false);
-    var user = _auth.authStateChanges().listen(
+    _auth.authStateChanges().listen(
       (User? user) {
         if (user == null) {
           temp = Future.value(false);

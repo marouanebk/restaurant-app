@@ -45,7 +45,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => Authenticationpage()));
+                      builder: (BuildContext context) =>
+                          const Authenticationpage()));
             }
             index = index + 1;
             setIndex(index);
@@ -108,18 +109,16 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                       builder: (BuildContext context) =>
                                           const Authenticationpage()));
                             },
-                            child: Container(
-                              child: const Text(
-                                "Skip",
-                                style: TextStyle(
-                                  color: Color(0xFF4B5563),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  letterSpacing: 0.7,
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.center,
+                            child: const Text(
+                              "Skip",
+                              style: TextStyle(
+                                color: Color(0xFF4B5563),
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                letterSpacing: 0.7,
+                                height: 1.5,
                               ),
+                              textAlign: TextAlign.center,
                             ),
                           ),
                     CustomIndicator(
@@ -128,7 +127,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       pagesLength: pagesLength,
                       indicator: Indicator(
                         activeIndicator: const ActiveIndicator(
-                            color: Colors.white, borderWidth: 0.7),
+                            color: Color(0xFFE2E2E2), borderWidth: 0.7),
                         closedIndicator: const ClosedIndicator(
                             color: Color(0xFF32B768), borderWidth: 0.7),
                         indicatorDesign: IndicatorDesign.polygon(

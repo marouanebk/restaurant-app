@@ -15,15 +15,13 @@ PageModel pageTwo() {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
-
 
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 45.0,
-              // vertical: 70.0,
             ),
             child: Stack(children: [
               SvgPicture.asset(
@@ -32,7 +30,7 @@ PageModel pageTwo() {
               ),
             ]),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           const Padding(

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurent_app/core/string/messages.dart';
 import 'package:restaurent_app/core/utils/enums.dart';
 import 'package:restaurent_app/mainpage/domaine/Entities/food.dart';
 import 'package:restaurent_app/mainpage/domaine/UseCases/get_new_arrivals_usecase.dart';

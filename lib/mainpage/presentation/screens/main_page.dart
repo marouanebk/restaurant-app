@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onboarding/onboarding.dart';
 import 'package:restaurent_app/core/widgets/search_text_input.dart';
 import 'package:restaurent_app/injection_container.dart';
 import 'package:restaurent_app/mainpage/presentation/component/booking_restaurants.dart';
 import 'package:restaurent_app/mainpage/presentation/component/description.dart';
+import 'package:restaurent_app/mainpage/presentation/component/flash_offers.dart';
 import 'package:restaurent_app/mainpage/presentation/component/new_arrivals.dart';
 import 'package:restaurent_app/mainpage/presentation/controller/Food/food_bloc.dart';
 
@@ -21,44 +23,73 @@ class _MainPageState extends State<MainPage> {
     return BlocProvider(
       create: (BuildContext context) =>
           sl<FoodBloc>()..add(GetNewArrivalsEvent()),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-          ),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                firstPadding(),
-                const SizedBox(
-                  height: 18,
-                ),
-                searchBar(search),
-                const SizedBox(
-                  height: 28,
-                ),
-                const TypeDescription(
-                    type: "Today New Arivable",
-                    subType: "Best of the today food list update"),
-                const SizedBox(
-                  height: 16,
-                ),
-                const TodayArrivals(),
-                const SizedBox(
-                  height: 36,
-                ),
-                const TypeDescription(
-                    type: "Booking Restaurant",
-                    subType: "Check your city Near by Restaurant"),
-                const SizedBox(
-                  height: 36,
-                ),
-                const BookingRestaurant(),
-                const SizedBox(
-                  height: 36,
-                )
-              ],
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF6F6F6),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+            ),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  firstPadding(),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  searchBar(search),
+                  const SizedBox(
+                    height: 28,
+                  ),
+                  const FlashOffers(),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Center(
+                    child: CustomIndicator(
+                      shouldPaint: true,
+                      netDragPercent: 0,
+                      pagesLength: 3,
+                      indicator: Indicator(
+                        activeIndicator: const ActiveIndicator(
+                            color: Color(0xFFE2E2E2), borderWidth: 0.7),
+                        closedIndicator: const ClosedIndicator(
+                            color: Color(0xFF32B768), borderWidth: 0.7),
+                        indicatorDesign: IndicatorDesign.polygon(
+                          polygonDesign: PolygonDesign(
+                            polygonRadius: 9,
+                            polygon: DesignType.polygon_circle,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  const TypeDescription(
+                      type: "Today New Arivable",
+                      subType: "Best of the today food list update"),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const TodayArrivals(),
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  const TypeDescription(
+                      type: "Booking Restaurant",
+                      subType: "Check your city Near by Restaurant"),
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  const BookingRestaurant(),
+                  const SizedBox(
+                    height: 36,
+                  )
+                ],
+              ),
             ),
           ),
         ),

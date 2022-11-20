@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 
 class TextFieldInput extends StatelessWidget {
@@ -20,7 +19,7 @@ class TextFieldInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final InputBorder =
+    final inputBorder =
         OutlineInputBorder(borderSide: Divider.createBorderSide(context));
     return TextField(
       controller: textEditingController,
@@ -41,8 +40,8 @@ class TextFieldInput extends StatelessWidget {
         fillColor: Colors.white,
         hintText: hintText,
         // border: InputBorder,
-        focusedBorder: InputBorder,
-        enabledBorder: InputBorder,
+        focusedBorder: inputBorder,
+        enabledBorder: inputBorder,
         filled: true,
         contentPadding: const EdgeInsets.all(8),
       ),

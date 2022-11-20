@@ -1,13 +1,7 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurent_app/OnBoarding/presentation/screens/on_boarding_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_bloc.dart';
-import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_event.dart';
-import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_state.dart';
 import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
 import 'package:restaurent_app/injection_container.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';

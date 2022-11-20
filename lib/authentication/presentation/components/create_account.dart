@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurent_app/authentication/domaine/Entities/user.dart';
@@ -195,25 +193,23 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           ),
         );
       },
-      child: Container(
-        child: Text(
-          'Login',
-          style: TextStyle(
-            fontSize: 16.0,
-            wordSpacing: 1,
-            letterSpacing: 1.2,
-            fontWeight: FontWeight.w600,
-            color: Color(AppColors.grey),
-          ),
-          textAlign: TextAlign.center,
+      child: Text(
+        'Login',
+        style: TextStyle(
+          fontSize: 16.0,
+          wordSpacing: 1,
+          letterSpacing: 1.2,
+          fontWeight: FontWeight.w600,
+          color: Color(AppColors.grey),
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }
 
   Widget singupText() {
     return Container(
-      padding: EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -240,7 +236,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Widget controllerLabel(
       String label, TextEditingController controller, bool controllerColor) {
     return Text(
-      '  ${label}',
+      "  ${label}",
       style: TextStyle(
         fontSize: 16.0,
         wordSpacing: 1,
@@ -264,7 +260,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         border: Border.all(color: const Color(0xFFBEC5D1)),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
         child: TextFieldInput(
           hintText: hint,
           textEditingController: controller,
@@ -360,7 +356,7 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
         child: CircularProgressIndicator(
       color: Colors.white,
     ));

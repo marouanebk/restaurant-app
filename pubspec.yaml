@@ -73,6 +73,9 @@ flutter:
     #authentication
     - assets/authentication/Order Success.svg
     - assets/icons/ic_google.png
+    - assets/flash offers/Burger.png
+    - assets/flash offers/BurgerKingLogo.png
+
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

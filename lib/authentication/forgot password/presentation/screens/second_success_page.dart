@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurent_app/authentication/forgot%20password/presentation/screens/new_password.dart';
 import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 
@@ -15,7 +14,7 @@ class SecondSucessPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(),
+            const Spacer(),
             Container(
               height: 110,
               width: 110,
@@ -27,18 +26,18 @@ class SecondSucessPage extends StatelessWidget {
                   width: 3,
                 ),
               ),
-              child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+              child: const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Icon(
                     Icons.check,
                     size: 55.0,
                     color: Colors.white,
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Success',
               style: TextStyle(
                 fontSize: 24.0,
@@ -49,10 +48,10 @@ class SecondSucessPage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
-            Text(
+            const Text(
               'Congratulations your password has\n been changed,',
               style: TextStyle(
                 fontSize: 16.0,
@@ -63,8 +62,7 @@ class SecondSucessPage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-           
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: EdgeInsets.symmetric(
                 vertical: 60,
@@ -74,7 +72,7 @@ class SecondSucessPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                          builder: (context) => Authenticationpage()),
+                          builder: (context) => const Authenticationpage()),
                       (Route<dynamic> route) => false);
                 },
                 child: Container(

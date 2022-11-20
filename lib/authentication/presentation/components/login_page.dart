@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurent_app/authentication/domaine/Entities/user.dart';
-
 import 'package:restaurent_app/authentication/forgot%20password/presentation/screens/forgot_password.dart';
 import 'package:restaurent_app/authentication/presentation/components/create_account.dart';
 import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_bloc.dart';
@@ -47,8 +44,8 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                navigation_button(context),
-                login_text(),
+                navigationButton(context),
+                loginText(),
               ],
             ),
             const SizedBox(
@@ -67,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 5,
             ),
-            forget_password(context),
+            forgetPassword(context),
             const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
             BlocListener<UserBloc, UserBlocState>(
               listener: (context, state) {
@@ -96,15 +93,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            login_botton(context),
-            login_google(context),
+            loginBotton(context),
+            loginGoogle(context),
           ],
         );
       }),
     );
   }
 
-  Widget login_text() {
+  Widget loginText() {
     return Container(
       padding: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -131,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget navigation_button(context) {
+  Widget navigationButton(context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).pop();
@@ -160,18 +157,16 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       },
-      child: Container(
-        child: Text(
-          'Create Account',
-          style: TextStyle(
-            fontSize: 16.0,
-            wordSpacing: 1,
-            letterSpacing: 1.2,
-            fontWeight: FontWeight.w600,
-            color: Color(AppColors.grey),
-          ),
-          textAlign: TextAlign.center,
+      child: Text(
+        'Create Account',
+        style: TextStyle(
+          fontSize: 16.0,
+          wordSpacing: 1,
+          letterSpacing: 1.2,
+          fontWeight: FontWeight.w600,
+          color: Color(AppColors.grey),
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -202,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
         border: Border.all(color: const Color(0xFFBEC5D1)),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 1),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
         child: TextFieldInput(
           hintText: hint,
           textEditingController: controller,
@@ -236,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget forget_password(context) {
+  Widget forgetPassword(context) {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
@@ -263,7 +258,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget login_botton(context) {
+  Widget loginBotton(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 30.0,
@@ -328,7 +323,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget login_google(context) {
+  Widget loginGoogle(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: TextButton(

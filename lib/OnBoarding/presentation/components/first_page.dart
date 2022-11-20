@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:onboarding/onboarding.dart';
@@ -16,7 +15,7 @@ PageModel pageOne() {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Padding(
@@ -31,14 +30,9 @@ PageModel pageOne() {
               ),
             ]),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
-          // const Padding(
-          //   padding: EdgeInsets.symmetric(
-          //     vertical: 15.0,
-          //   ),
-          // ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 45.0),
             child: Align(

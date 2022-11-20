@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 
 class OrderHistory extends StatefulWidget {
@@ -21,11 +19,6 @@ class _OrderHistoryState extends State<OrderHistory> {
         ),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-
-        // scrollDirection: Axis.vertical,
-        // padding: const EdgeInsets.only(right: 12.0),
-
-        // padding: const EdgeInsets.symmetric(horizontal: 16.0),
         itemCount: 3,
         itemBuilder: (context, index) {
           return Container(
@@ -107,7 +100,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           //was here

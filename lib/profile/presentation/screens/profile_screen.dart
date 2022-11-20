@@ -18,6 +18,7 @@ class ProfileScreen extends StatelessWidget {
       create: (_) => sl<UserBloc>()..add(const UserDetailsEvent()),
       child: Builder(builder: (context) {
         return Scaffold(
+          backgroundColor: const Color(0xFFF6F6F6),
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.only(left: 24.0, right: 24, top: 60),
@@ -183,29 +184,29 @@ Widget thirdContainer() {
       borderRadius: BorderRadius.circular(11.0),
     ),
     child: Column(
-      children: [
-        const RowContainer(
+      children: const [
+        RowContainer(
           iconname: Icons.text_snippet_rounded,
           title: "Language",
         ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        const RowContainer(
+        RowContainer(
           iconname: Icons.chat,
           title: "Feedback",
         ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        const RowContainer(
+        RowContainer(
           iconname: Icons.star_outline_outlined,
           title: "Rate us",
         ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        const RowContainer(
+        RowContainer(
           iconname: Icons.arrow_circle_up,
           title: "Account version",
         ),

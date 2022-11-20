@@ -46,16 +46,16 @@ class _AuthenticationpageState extends State<Authenticationpage> {
                 const SizedBox(
                   height: 20,
                 ),
-                welcome_padding(),
-                register_padding(),
+                welcomePadding(),
+                registerPadding(),
                 const Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 45.0,
                     vertical: 15.0,
                   ),
                 ),
-                signup_button(context),
-                login_botton(context),
+                signupButton(context),
+                loginBotton(context),
                 footer(),
               ],
             )),
@@ -64,7 +64,7 @@ class _AuthenticationpageState extends State<Authenticationpage> {
   }
 }
 
-Widget welcome_padding() {
+Widget welcomePadding() {
   return const Padding(
     padding: EdgeInsets.symmetric(horizontal: 45.0),
     child: Align(
@@ -84,7 +84,7 @@ Widget welcome_padding() {
   );
 }
 
-Widget register_padding() {
+Widget registerPadding() {
   return const Padding(
     padding: EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
     child: Align(
@@ -104,7 +104,7 @@ Widget register_padding() {
   );
 }
 
-Widget signup_button(context) {
+Widget signupButton(context) {
   return TextButton(
     onPressed: () {
       showModalBottomSheet<dynamic>(
@@ -156,7 +156,7 @@ Widget signup_button(context) {
   );
 }
 
-Widget login_botton(context) {
+Widget loginBotton(context) {
   return TextButton(
     onPressed: () {
       showModalBottomSheet<dynamic>(

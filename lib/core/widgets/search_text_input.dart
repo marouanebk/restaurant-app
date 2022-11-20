@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 
 class SearchFieledInput extends StatelessWidget {
@@ -17,13 +16,13 @@ class SearchFieledInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final InputBorder =
+    final inputBorder =
         OutlineInputBorder(borderSide: Divider.createBorderSide(context));
     return TextField(
       controller: textEditingController,
       autocorrect: false,
       enableSuggestions: false,
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.black,
         fontSize: 14,
         fontWeight: FontWeight.w600,
@@ -34,11 +33,11 @@ class SearchFieledInput extends StatelessWidget {
           fontSize: 12,
           fontWeight: FontWeight.w500,
         ),
-        fillColor: Color(0xFFE6E7E9),
+        fillColor: const Color(0xFFE6E7E9),
         hintText: hintText,
         // border: InputBorder,
-        focusedBorder: InputBorder,
-        enabledBorder: InputBorder,
+        focusedBorder: inputBorder,
+        enabledBorder: inputBorder,
         filled: true,
         contentPadding: const EdgeInsets.all(8),
       ),
