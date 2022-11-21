@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class RowContainer extends StatefulWidget {
-  final  iconname;
-  final title;
+  final IconData iconname;
+  final String title;
   const RowContainer({super.key, required this.iconname, required this.title});
 
   @override

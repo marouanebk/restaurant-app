@@ -9,9 +9,14 @@ import 'package:restaurent_app/authentication/domaine/UseCase/login_usercase.dar
 import 'package:restaurent_app/authentication/domaine/UseCase/logout_usecase.dart';
 import 'package:restaurent_app/authentication/presentation/controller/bloc/user_bloc_bloc.dart';
 import 'package:restaurent_app/mainpage/data/DataSource/food_remote_datasource.dart';
+import 'package:restaurent_app/mainpage/data/DataSource/restaurant_remote_datasource.dart';
 import 'package:restaurent_app/mainpage/data/Repository/foods_repository.dart';
+import 'package:restaurent_app/mainpage/data/Repository/restaurant_repository.dart';
 import 'package:restaurent_app/mainpage/domaine/Repository/food_repository.dart';
+import 'package:restaurent_app/mainpage/domaine/Repository/restaurant_repository.dart';
 import 'package:restaurent_app/mainpage/domaine/UseCases/get_new_arrivals_usecase.dart';
+import 'package:restaurent_app/mainpage/domaine/UseCases/get_restaurant_detail.dart';
+import 'package:restaurent_app/mainpage/domaine/UseCases/get_restaurants.dart';
 import 'package:restaurent_app/mainpage/presentation/controller/Food/food_bloc.dart';
 
 final sl = GetIt.instance;
@@ -19,23 +24,30 @@ final sl = GetIt.instance;
 class ServiceLocator {
   Future<void> init() async {
     // Bloc
-    sl.registerFactory(() => UserBloc(sl(), sl(), sl(), sl() , sl()));
-    sl.registerFactory(() => FoodBloc(sl()));
+    sl.registerFactory(() => UserBloc(sl(), sl(), sl(), sl(), sl()));
+    sl.registerFactory(() => FoodBloc(sl(), sl(), sl()));
 
     // sl.registerFactory(() => UserBloc(
     // createUserUseCase: sl(), loginUserCase: sl()));
-    // Usecases
+    // authentciation Usecases
     sl.registerLazySingleton(() => LoginUseCase(sl()));
     sl.registerLazySingleton(() => CreateUserUseCase(sl()));
     sl.registerLazySingleton(() => LogOutUseCase(sl()));
     sl.registerLazySingleton(() => AuthenticationState(sl()));
-    sl.registerLazySingleton(() => GetNewArrivalsUseCase(sl()));
     sl.registerLazySingleton(() => GetUserDetailsUseCase(sl()));
 
+    //food use cases
+    sl.registerLazySingleton(() => GetNewArrivalsUseCase(sl()));
+
+    //restaurant repository
+    sl.registerLazySingleton(() => GetRestaurantsUseCase(sl()));
+    sl.registerLazySingleton(() => GetRestaurantDetailUseCase(sl()));
 
     // Repository
     sl.registerLazySingleton<BaseUserRepository>(() => UserRepository(sl()));
     sl.registerLazySingleton<BaseFoodRepository>(() => FoodsRepository(sl()));
+    sl.registerLazySingleton<BaseRestaurantRepository>(
+        () => RestaurantRepository(sl()));
 
     // sl.registerLazySingleton<BaseUserRepository>(() => UserRepository(sl()));
 
@@ -43,6 +55,8 @@ class ServiceLocator {
 
     sl.registerLazySingleton<BaseFoodRemoteDataSource>(
         () => FoodRemoteDataSource());
+    sl.registerLazySingleton<BaseRestaurantRemoteDataSource>(
+        () => RestaurantRemoteDataSource());
 
     sl.registerLazySingleton<BaseUserRemoteDateSource>(
         () => UserRemoteDataSource());

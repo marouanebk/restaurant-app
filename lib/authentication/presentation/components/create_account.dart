@@ -51,16 +51,16 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             const SizedBox(
               height: 8,
             ),
-            controllerLabel("Full Name", _fullname, fullnameColor),
+            controllerLabel("  Full Name", _fullname, fullnameColor),
             // fullname_text(fullname),
             const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
             textController("Enter Your full name", _fullname, false, 1),
             const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
-            controllerLabel("Email Adress", _email, emailColor),
+            controllerLabel("  Email Adress", _email, emailColor),
             const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
             textController("Eg namaemail@emailkamu.com", _email, false, 2),
             const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
-            controllerLabel("Password", _pass, passwordColor),
+            controllerLabel("  Password", _pass, passwordColor),
             const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
             textController("********", _pass, true, 3),
             BlocListener<UserBloc, UserBlocState>(
@@ -236,7 +236,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   Widget controllerLabel(
       String label, TextEditingController controller, bool controllerColor) {
     return Text(
-      "  ${label}",
+      label,
       style: TextStyle(
         fontSize: 16.0,
         wordSpacing: 1,

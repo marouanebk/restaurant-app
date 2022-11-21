@@ -21,8 +21,9 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) =>
-          sl<FoodBloc>()..add(GetNewArrivalsEvent()),
+      create: (BuildContext context) => sl<FoodBloc>()
+        ..add(GetNewArrivalsEvent())
+        ..add(GetRestaurantsEvent()),
       child: Scaffold(
         backgroundColor: const Color(0xFFF6F6F6),
         body: SafeArea(

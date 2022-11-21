@@ -12,6 +12,8 @@ import 'package:restaurent_app/profile/presentation/components/row_container.dar
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

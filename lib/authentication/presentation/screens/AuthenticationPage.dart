@@ -112,8 +112,8 @@ Widget signupButton(context) {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (context) => Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom *0.5),
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom * 0.5),
           child: Container(
             height: 576,
             decoration: const BoxDecoration(
@@ -164,8 +164,8 @@ Widget loginBotton(context) {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (context) => Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom *0.5),
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom * 0.5),
           child: Container(
             height: 576,
             decoration: const BoxDecoration(
