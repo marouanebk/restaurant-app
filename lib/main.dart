@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
 import 'package:restaurent_app/injection_container.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';
+import 'package:restaurent_app/mainpage/presentation/screens/map_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 int? initScreen;
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Restaurant',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.active) {
                   if (snapshot.hasData) {
                     return const BaseScreen();
+                    // return MapSample();
                   } else if (snapshot.hasError) {
                     return Center(
                       child: Text('${snapshot.error}'),

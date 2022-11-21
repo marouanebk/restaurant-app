@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:restaurent_app/mainpage/data/Models/restaurant_detail_model.dart';
 import 'package:restaurent_app/mainpage/data/Models/restaurant_model.dart';
-import 'package:restaurent_app/mainpage/domaine/Entities/restaurant_detail.dart';
 
 abstract class BaseRestaurantRemoteDataSource {
   Future<List<RestaurantModel>?> getRestaurants();
@@ -24,7 +21,6 @@ class RestaurantRemoteDataSource extends BaseRestaurantRemoteDataSource {
 
   @override
   Future<RestaurantDetailModel> getRestaurantDetail(id) async {
-    log("in get restaurant Detail ");
     var collection = FirebaseFirestore.instance.collection('restaurant');
     var docSnapshot = await collection.doc(id).get();
     Map<String, dynamic>? data = docSnapshot.data();

@@ -54,11 +54,11 @@ class _LoginPageState extends State<LoginPage> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 15),
             ),
-            controllerLabel(email, "Email Adress", emailColor),
+            controllerLabel(email, "  Email Adress", emailColor),
             const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-            controller(email, 'Eg namaemail@emailkamu.com', false, 1),
+            controller(email, '  Eg namaemail@emailkamu.com', false, 1),
             const Padding(padding: EdgeInsets.symmetric(vertical: 15)),
-            controllerLabel(password, "Password", passwordColor),
+            controllerLabel(password, "  Password", passwordColor),
             const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
             controller(password, '**************', true, 2),
             const SizedBox(
@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget controllerLabel(
       TextEditingController controller, String label, bool controllerColor) {
     return Text(
-      '  ${label}',
+      label,
       style: TextStyle(
         fontSize: 16.0,
         wordSpacing: 1,

@@ -1,5 +1,3 @@
-import 'package:restaurent_app/mainpage/domaine/Entities/food.dart';
-import 'package:restaurent_app/mainpage/domaine/Entities/restaurant.dart';
 import 'package:restaurent_app/mainpage/domaine/Entities/restaurant_detail.dart';
 
 class RestaurantDetailModel extends RestaurantDetail {
@@ -11,13 +9,6 @@ class RestaurantDetailModel extends RestaurantDetail {
     required super.opTime,
     required super.clTime,
   });
-
-  // factory FoodModel.fromJson(Map<String, dynamic> json) => FoodModel(
-  //       id: json["id"],
-  //       name: json["name"],
-  //       picture: json["backdrop_path"],
-  //       restaurant: json["restaurant"],
-  //     );
 
   factory RestaurantDetailModel.fromJson(Map<String, dynamic> json) {
     return RestaurantDetailModel(

@@ -4,6 +4,7 @@ import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/utils/enums.dart';
 import 'package:restaurent_app/mainpage/presentation/controller/Food/food_bloc.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/item_detail_screen.dart';
+import 'package:restaurent_app/mainpage/presentation/screens/map_screen.dart';
 
 class BookingRestaurant extends StatefulWidget {
   const BookingRestaurant({super.key});
@@ -160,31 +161,40 @@ class _BookingRestaurantState extends State<BookingRestaurant> {
   }
 
   Widget locationBooking(location) {
-    return RichText(
-      text: TextSpan(
-        style: const TextStyle(
-          fontSize: 10.0,
-          wordSpacing: 1,
-          letterSpacing: 1.2,
-          fontWeight: FontWeight.normal,
-          color: Color(0xFF1F2937),
-        ),
-        children: [
-          WidgetSpan(
-            child: Icon(
-              Icons.location_on,
-              size: 16,
-              color: Color(AppColors.mainGreen),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context, ).push(
+          MaterialPageRoute(
+            builder: (_) => MapSample(),
+          ),
+        );
+      },
+      child: RichText(
+        text: TextSpan(
+          style: const TextStyle(
+            fontSize: 10.0,
+            wordSpacing: 1,
+            letterSpacing: 1.2,
+            fontWeight: FontWeight.normal,
+            color: Color(0xFF1F2937),
+          ),
+          children: [
+            WidgetSpan(
+              child: Icon(
+                Icons.location_on,
+                size: 16,
+                color: Color(AppColors.mainGreen),
+              ),
             ),
-          ),
-          const WidgetSpan(
-              child: SizedBox(
-            width: 2,
-          )),
-          TextSpan(
-            text: location,
-          ),
-        ],
+            const WidgetSpan(
+                child: SizedBox(
+              width: 2,
+            )),
+            TextSpan(
+              text: location,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -220,10 +220,11 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context, rootNavigator: true)
-                      .push(MaterialPageRoute(
-                    builder: (_) => MapSample(),
-                  ));
+                  Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute(
+                      builder: (_) => MapSample(),
+                    ),
+                  );
                 },
                 child: RichText(
                   text: const TextSpan(
