@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurent_app/core/utils/const/colors.dart';
 import 'package:restaurent_app/core/utils/enums.dart';
 import 'package:restaurent_app/mainpage/presentation/controller/Food/food_bloc.dart';
+import 'package:restaurent_app/mainpage/presentation/screens/map_screen.dart';
 
 class TodayArrivals extends StatefulWidget {
   const TodayArrivals({super.key});
@@ -64,7 +65,7 @@ class _TodayArrivalsState extends State<TodayArrivals> {
                                 height: 16,
                               ),
                               title(state.getNewArrivals[index].name),
-                              location(state.getNewArrivals[index].restaurant),
+                              location(state.getNewArrivals[index].restaurant , context),
                             ]),
                       );
                     }),
@@ -121,32 +122,43 @@ Widget title(title) {
   );
 }
 
-Widget location(loc) {
-  return RichText(
-    text: TextSpan(
-      style: const TextStyle(
-        fontSize: 10.0,
-        wordSpacing: 1,
-        letterSpacing: 1.2,
-        fontWeight: FontWeight.w500,
-        color: Color(0xFF1F2937),
-      ),
-      children: [
-        WidgetSpan(
-          child: Icon(
-            Icons.location_on,
-            size: 16,
-            color: Color(AppColors.mainGreen),
+Widget location(loc ,context) {
+  return InkWell(
+    onTap: () {
+      Navigator.of(
+        context,
+      ).push(
+        MaterialPageRoute(
+          builder: (_) => MapSample(),
+        ),
+      );
+    },
+    child: RichText(
+      text: TextSpan(
+        style: const TextStyle(
+          fontSize: 10.0,
+          wordSpacing: 1,
+          letterSpacing: 1.2,
+          fontWeight: FontWeight.w500,
+          color: Color(0xFF1F2937),
+        ),
+        children: [
+          WidgetSpan(
+            child: Icon(
+              Icons.location_on,
+              size: 16,
+              color: Color(AppColors.mainGreen),
+            ),
           ),
-        ),
-        const WidgetSpan(
-            child: SizedBox(
-          width: 2,
-        )),
-        TextSpan(
-          text: loc,
-        ),
-      ],
+          const WidgetSpan(
+              child: SizedBox(
+            width: 2,
+          )),
+          TextSpan(
+            text: loc,
+          ),
+        ],
+      ),
     ),
   );
   //text align

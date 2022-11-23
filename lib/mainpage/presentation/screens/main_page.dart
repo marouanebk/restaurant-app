@@ -112,6 +112,7 @@ Widget searchBar(search) {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
         child: SearchFieledInput(
+          fillColor: 0xFFE6E7E9,
             hintText: '     Search',
             textEditingController: search,
             textInputType: TextInputType.text),

@@ -5,7 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:restaurent_app/authentication/presentation/screens/AuthenticationPage.dart';
 import 'package:restaurent_app/injection_container.dart';
 import 'package:restaurent_app/mainpage/presentation/screens/base_screen.dart';
-import 'package:restaurent_app/mainpage/presentation/screens/map_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 int? initScreen;

@@ -6,12 +6,14 @@ class SearchFieledInput extends StatelessWidget {
   final bool isPass;
   final String hintText;
   final TextInputType textInputType;
+  final int fillColor;
   const SearchFieledInput(
       {Key? key,
       required this.hintText,
       this.isPass = false,
       required this.textEditingController,
-      required this.textInputType})
+      required this.textInputType,
+      required this.fillColor})
       : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class SearchFieledInput extends StatelessWidget {
           fontSize: 12,
           fontWeight: FontWeight.w500,
         ),
-        fillColor: const Color(0xFFE6E7E9),
+        fillColor: Color(fillColor),
         hintText: hintText,
         // border: InputBorder,
         focusedBorder: inputBorder,
